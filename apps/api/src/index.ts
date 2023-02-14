@@ -1,27 +1,20 @@
-import cors from 'cors';
-import * as dotenv from 'dotenv';
-import express from 'express';
-import helmet from 'helmet';
-import morgan from 'morgan';
+import mongoose from 'mongoose';
+import { MONGO_URL, PORT } from './env';
 
-dotenv.config();
-const app = express();
+import server from './server';
 
-const { PORT } = process.env;
+(async function () {
+    try {
+        console.log(MONGO_URL);
 
-app.use(helmet())
-    .use(helmet.hidePoweredBy())
-    .use(morgan('dev'))
-    .use(express.json())
-    .use(express.urlencoded({ extended: true }))
-    .use(cors());
+        await mongoose.set('strictQuery', false).connect(MONGO_URL);
+        console.log('Connected to DB successfully!');
 
-app.get('/', (req, res) => {
-    return res.status(200).json({
-        message: 'Hello World!',
-    });
-});
-
-app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT}/`);
-});
+        server.listen(PORT, () => {
+            console.log(`Server listening on http://localhost:${PORT}/`);
+        });
+    } catch (err: any) {
+        console.log('Error starting the server!', err.message);
+        process.exit(0);
+    }
+})();
