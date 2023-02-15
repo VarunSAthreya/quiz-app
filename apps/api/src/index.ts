@@ -5,8 +5,6 @@ import server from './server';
 
 (async function () {
     try {
-        console.log(MONGO_URL);
-
         await mongoose.set('strictQuery', false).connect(MONGO_URL);
         console.log('Connected to DB successfully!');
 
