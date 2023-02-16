@@ -21,9 +21,5 @@
     "engines": {
         "node": ">=14.0.0"
     },
-    "dependencies": {
-        "bootstrap": "^5.2.3",
-        "react-bootstrap": "^2.7.2"
-    },
     "packageManager": "npm@9.4.0"
 }
