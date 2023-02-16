@@ -1,0 +1,31 @@
+.header {
+    height: 60px;
+    background: #3b71ca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#quizNameInput {
+    height: 50px;
+    background: #3b71ca;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    opacity: 1;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.8; /* Firefox */
+}
+
+.add-btn-container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
