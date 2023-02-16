@@ -22,4 +22,12 @@ const QuestionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+QuestionSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuestionSchema.set('toJSON', {
+    virtuals: true,
+});
+
 export default QuestionSchema;
