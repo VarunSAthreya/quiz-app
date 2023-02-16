@@ -5,8 +5,10 @@ const AddQuestionButton = (props) => {
     const { questions, setQuestions } = props;
 
     const clickHandler = (event) => {
-        setQuestions([...questions, { description: '', id: '' }]);
-        console.log(questions);
+        setQuestions([
+            ...questions,
+            { title: '', isMultiple: false, points: 1, options: [] },
+        ]);
     };
 
     return (

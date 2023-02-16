@@ -1,4 +1,11 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .header {
+    width: 100vw;
     height: 60px;
     background: #3b71ca;
     display: flex;
@@ -28,4 +35,17 @@
     margin: 10px;
     display: flex;
     justify-content: center;
+}
+
+.question-container {
+    width: 50%;
+    border: 5px solid #3b71ca;
+    border-radius: 3px;
+    margin: 10px 0;
+    padding-bottom: 10px;
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
 }
