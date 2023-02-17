@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddOptionButton from './AddOptionButton';
 import OptionContainer from './OptionContainer';
+import DeleteQuesButton from './DeleteQuesButton';
 import Form from 'react-bootstrap/Form';
 
 const QuestionContainer = (props) => {
+    const { quesDeleteState, setQuesDeleteState } = props;
     const [questionTitle, setQuestionTitle] = useState('');
     const [options, setOptions] = useState([]);
     const changeHandlerTitle = (val) => {
@@ -11,13 +13,29 @@ const QuestionContainer = (props) => {
         props.questions[props.ind].title = val;
         props.setQuestions([...props.questions]);
     };
+
+    useEffect(() => {
+        setOptions(props.questions[props.ind].options);
+        setQuestionTitle(props.questions[props.ind].title);
+    }, [quesDeleteState]);
+
     return (
         <Form className="question-container">
             <Form.Group
                 className="mb-3 ms-3 me-3 mt-3"
                 controlId="question-title"
             >
-                <Form.Label>Question {props.ind + 1}</Form.Label>
+                <div className="label-container">
+                    <Form.Label>Question {props.ind + 1}</Form.Label>
+                    <DeleteQuesButton
+                        quesDeleteState={quesDeleteState}
+                        setQuesDeleteState={setQuesDeleteState}
+                        questions={props.questions}
+                        setQuestions={props.setQuestions}
+                        quesIndex={props.ind}
+                    />
+                </div>
+
                 <Form.Control
                     as="textarea"
                     rows={3}
@@ -43,6 +61,7 @@ const QuestionContainer = (props) => {
                         setOptions={setOptions}
                         quesIndex={props.ind}
                         ele={ele}
+                        quesDeleteState={quesDeleteState}
                     />
                 );
             })}

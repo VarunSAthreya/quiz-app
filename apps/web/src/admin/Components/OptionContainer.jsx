@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 
 const OptionContainer = (props) => {
-    const { i, questions, setQuestions, options, setOptions, quesIndex, ele } =
-        props;
+    const {
+        i,
+        questions,
+        setQuestions,
+        options,
+        setOptions,
+        quesIndex,
+        ele,
+        quesDeleteState,
+    } = props;
     const [optionTitle, setOptionTitle] = useState('');
     const [isChecked, setIsChecked] = useState(false);
     const changeHandler = (val) => {
@@ -15,11 +23,11 @@ const OptionContainer = (props) => {
         questions[quesIndex].options = [...options];
         setQuestions([...questions]);
     };
-    const changeHandlerSwitch = (event) => {
-        console.log(event.target.checked, i + 1);
-        setIsChecked(event.target.checked);
+    const changeHandlerSwitch = (checked) => {
+        console.log(checked, i + 1);
+        setIsChecked(checked);
 
-        options[i].isAnswer = event.target.checked;
+        options[i].isAnswer = checked;
         setOptions([...options]);
 
         //calculate for isMultiple
@@ -34,6 +42,16 @@ const OptionContainer = (props) => {
         questions[quesIndex].options = [...options];
         setQuestions([...questions]);
     };
+
+    useEffect(() => {
+        try {
+            setOptionTitle(questions[quesIndex].options[i].title || '');
+            setIsChecked(questions[quesIndex].options[i].isAnswer || false);
+        } catch {
+            console.log('ok');
+        }
+    }, [quesDeleteState]);
+
     return (
         <div className="option-container">
             <Form className="ms-3 me-3">
@@ -50,7 +68,10 @@ const OptionContainer = (props) => {
                     type="switch"
                     id="custom-switch"
                     label={`Is option-${i + 1} correct ?`}
-                    onChange={(event) => changeHandlerSwitch(event)}
+                    onChange={(event) =>
+                        changeHandlerSwitch(event.target.checked)
+                    }
+                    checked={isChecked}
                 />
             </Form>
         </div>
