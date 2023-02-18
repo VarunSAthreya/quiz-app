@@ -49,3 +49,33 @@ npm run build
 ```sh
 npm run format
 ```
+
+-   Clean dependencies and build files
+
+```sh
+npm run clean
+```
+
+### Docker
+
+-   For development purpose (MongoDB only)
+
+```sh
+docker-compose up
+```
+
+**NOTE:**
+
+-   This starts only the `mongo` service(`MongoDB` instance).
+-   Can use `-d` flag for it to be `detached` from terminal.
+
+-   For production build
+
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.production.yml up
+```
+
+**NOTE:**
+
+-   This starts all the services: `api`, `web`, `mongo`
+-   Can use `-d` flag for it to be `detached` from terminal.
