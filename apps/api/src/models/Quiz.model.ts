@@ -32,14 +32,20 @@ const QuizSchema = new mongoose.Schema(
 
 // * Pre function calculates the total points using question
 QuizSchema.pre('save', function (this, next) {
-    console.log(this);
-
     this.totalPoints = this.questions.reduce(
         (accumulator, currentObject) => accumulator + currentObject.points,
         0
     );
 
     return next();
+});
+
+QuizSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuizSchema.set('toJSON', {
+    virtuals: true,
 });
 
 export default mongoose.model('Quiz', QuizSchema);

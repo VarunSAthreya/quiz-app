@@ -2,6 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import errorHandler from './middleware/errorHandler';
+import { default as quizRouter } from './routes/quiz.route';
 
 const app = express();
 
@@ -17,5 +19,9 @@ app.get('/', (_, res) => {
         message: 'Hello World!',
     });
 });
+
+app.use('/quiz', quizRouter);
+
+app.use(errorHandler);
 
 export default app;
