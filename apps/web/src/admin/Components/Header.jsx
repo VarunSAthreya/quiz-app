@@ -9,6 +9,7 @@ const Header = (props) => {
         <div className="quiz-container">
             <div className="header">
                 <input
+                    autoFocus
                     onChange={changeHandlerQuizName}
                     type="text"
                     value={quizName}
