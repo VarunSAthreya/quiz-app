@@ -1,13 +1,16 @@
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import { VITE_APP_API_URL } from '../../../env';
 import SuccessModal from './SuccessModal';
 import UnSuccessfulModal from './UnSuccessfulModal';
-import { useState } from 'react';
 
 const GenerateQuizButton = (props) => {
     const { quizName, questions, adminName, adminEmail, quizDescription } =
         props;
     const [successStatus, setSuccessStatus] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+
     const clickHandler = () => {
         const data = {
             title: quizName,
@@ -19,13 +22,15 @@ const GenerateQuizButton = (props) => {
 
         console.log(data);
         axios
-            .post('/quiz', data)
+            .post(`${VITE_APP_API_URL}/quiz`, data)
             .then(() => {
-                console.log('Successfull');
+                console.log('Successful');
                 setSuccessStatus(true);
             })
             .catch((err) => {
+                console.log(err);
                 console.log('Unsuccessful', err);
+                setErrorMessage(err.response.data.message);
                 setSuccessStatus(false);
             });
     };
@@ -46,6 +51,7 @@ const GenerateQuizButton = (props) => {
                 )}
                 {successStatus === false ? (
                     <UnSuccessfulModal
+                        message={errorMessage}
                         successStatus={successStatus}
                         setSuccessStatus={setSuccessStatus}
                     />

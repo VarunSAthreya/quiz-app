@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const SuccessModal = (props) => {
-    const { successStatus, setSuccessStatus } = props;
+const UnSuccessfulModal = (props) => {
+    const { successStatus, setSuccessStatus, message } = props;
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         //reset status
         setSuccessStatus('');
         setShow(false);
-        //redirect path to dashboard
     };
     const handleShow = () => setShow(true);
 
@@ -25,15 +24,16 @@ const SuccessModal = (props) => {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Quiz Successfully Created!</Modal.Title>
+                    <Modal.Title>Error Occurred!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Congrats, the Quiz is created successfully, go to admin
-                    dashboard to access the Quiz
+                    Quiz creation unsuccessful, Please try again!
+                    <br />
+                    {message}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="success" onClick={handleClose}>
-                        Understood
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -41,4 +41,4 @@ const SuccessModal = (props) => {
     );
 };
 
-export default SuccessModal;
+export default UnSuccessfulModal;

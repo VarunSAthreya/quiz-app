@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 
-const UnSuccessfulModal = (props) => {
+const SuccessModal = (props) => {
     const { successStatus, setSuccessStatus } = props;
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     const handleClose = () => {
         //reset status
         setSuccessStatus('');
         setShow(false);
+        navigate(`/quiz/${quiz.id}`);
     };
     const handleShow = () => setShow(true);
 
@@ -24,14 +27,15 @@ const UnSuccessfulModal = (props) => {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Error Occured!</Modal.Title>
+                    <Modal.Title>Quiz Successfully Created!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Quiz creation unsuccessful, Please try again!
+                    Congrats, the Quiz is created successfully, go to admin
+                    dashboard to access the Quiz
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
+                    <Button variant="success" onClick={handleClose}>
+                        Understood
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -39,4 +43,4 @@ const UnSuccessfulModal = (props) => {
     );
 };
 
-export default UnSuccessfulModal;
+export default SuccessModal;
