@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const quizReportSchema = new mongoose.Schema(
+const QuizReportSchema = new mongoose.Schema(
     {
         quizID: {
             type: String,
@@ -19,5 +19,12 @@ const quizReportSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const QuizReport = mongoose.model('QuizReport', quizReportSchema);
-export default QuizReport;
+QuizReportSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuizReportSchema.set('toJSON', {
+    virtuals: true,
+});
+
+export default mongoose.model('QuizReport', QuizReportSchema);

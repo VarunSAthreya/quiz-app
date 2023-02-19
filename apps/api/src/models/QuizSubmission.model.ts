@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const quizSubmissionSchema = new mongoose.Schema(
+const QuizSubmissionSchema = new mongoose.Schema(
     {
         quizID: {
             type: String,
@@ -18,5 +18,12 @@ const quizSubmissionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const QuizSubmission = mongoose.model('QuizSubmission', quizSubmissionSchema);
-export default QuizSubmission;
+QuizSubmissionSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuizSubmissionSchema.set('toJSON', {
+    virtuals: true,
+});
+
+export default mongoose.model('QuizSubmission', QuizSubmissionSchema);

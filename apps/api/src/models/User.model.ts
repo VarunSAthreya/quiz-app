@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
     {
         username: {
             type: String,
@@ -20,5 +20,13 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const User = mongoose.model('User', userSchema);
-export default User;
+UserSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+// To ensure virtual fields are serialized.
+UserSchema.set('toJSON', {
+    virtuals: true,
+});
+
+export default mongoose.model('User', UserSchema);

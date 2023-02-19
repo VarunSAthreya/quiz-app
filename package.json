@@ -10,8 +10,8 @@
         "build": "turbo run build",
         "dev": "turbo run dev",
         "lint": "turbo run lint",
-        "clean": "turbo run clean",
-        "format": "prettier --write \"**/*.{ts,tsx,md,js,jsx,css,json}\""
+        "clean": "turbo run clean && rm -rf .turbo && rm -rf node_modules && rm -rf data",
+        "format": "prettier --write \"**/*.{ts,tsx,md,js,jsx,css,json,yml}\""
     },
     "devDependencies": {
         "eslint-config-custom": "*",
