@@ -47,3 +47,37 @@ export const createQuiz = async (
         );
     }
 };
+
+export const getQUiz = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const {
+            params: { id },
+        } = req;
+
+        const quiz = await Quiz.findById(id);
+
+        if (!quiz) {
+            throw new AppError({
+                message: 'Invalid ID, Cannot get the requested quiz.',
+                statusCode: 401,
+            });
+        }
+
+        res.status(201).json({
+            message: 'Quiz Created Successfully!',
+            data: quiz.toJSON(),
+        });
+    } catch (err: any) {
+        next(
+            new AppError({
+                message: err.message || 'Server error occurred!',
+                statusCode: err.statusCode || 400,
+                stack: err.stack || '',
+            })
+        );
+    }
+};
