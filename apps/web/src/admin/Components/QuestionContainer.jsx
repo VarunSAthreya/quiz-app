@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import AddOptionButton from './AddOptionButton';
 import OptionContainer from './OptionContainer';
 import DeleteQuesButton from './DeleteQuesButton';
+import PointContainer from './PointContainer';
 import Form from 'react-bootstrap/Form';
 
 const QuestionContainer = (props) => {
     const { quesDeleteState, setQuesDeleteState } = props;
     const [questionTitle, setQuestionTitle] = useState('');
+    const [points, setPoints] = useState(1);
     const [options, setOptions] = useState([]);
     const changeHandlerTitle = (val) => {
         setQuestionTitle(val);
@@ -15,6 +17,7 @@ const QuestionContainer = (props) => {
     };
 
     useEffect(() => {
+        setPoints(props.questions[props.ind].points);
         setOptions(props.questions[props.ind].options);
         setQuestionTitle(props.questions[props.ind].title);
     }, [quesDeleteState]);
@@ -27,6 +30,13 @@ const QuestionContainer = (props) => {
             >
                 <div className="label-container">
                     <Form.Label>Question {props.ind + 1}</Form.Label>
+                    <PointContainer
+                        points={points}
+                        setPoints={setPoints}
+                        questions={props.questions}
+                        setQuestions={props.setQuestions}
+                        quesIndex={props.ind}
+                    />
                     <DeleteQuesButton
                         quesDeleteState={quesDeleteState}
                         setQuesDeleteState={setQuesDeleteState}

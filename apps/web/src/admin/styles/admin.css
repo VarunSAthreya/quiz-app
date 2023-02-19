@@ -62,3 +62,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.point-container {
+    width: 80px;
+}

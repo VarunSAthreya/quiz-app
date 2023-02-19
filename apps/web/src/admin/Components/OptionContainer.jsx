@@ -54,7 +54,7 @@ const OptionContainer = (props) => {
 
     return (
         <div className="option-container">
-            <Form className="ms-3 me-3">
+            <div className="ms-3 me-3">
                 <Form.Group controlId="optionTextArea">
                     <Form.Label>Option {i + 1}</Form.Label>
                     <Form.Control
@@ -73,7 +73,7 @@ const OptionContainer = (props) => {
                     }
                     checked={isChecked}
                 />
-            </Form>
+            </div>
         </div>
     );
 };
