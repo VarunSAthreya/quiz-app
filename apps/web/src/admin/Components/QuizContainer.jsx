@@ -16,8 +16,6 @@ const QuizContainer = () => {
 
     useEffect(() => {
         setQuestions([...questions]);
-        console.log(questions);
-        console.log('CHANGED');
     }, [quesDeleteState]);
 
     return (
@@ -32,7 +30,7 @@ const QuizContainer = () => {
             />
             <Header quizName={quizName} setQuizName={setQuizName} />
             {questions.map((ele, ind) => {
-                console.log(questions);
+                // console.log(questions);
                 return (
                     <QuestionContainer
                         key={ind}

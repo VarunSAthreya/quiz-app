@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+const SuccessModal = (props) => {
+    const { successStatus, setSuccessStatus } = props;
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        //reset status
+        setSuccessStatus('');
+        setShow(false);
+        //redirect path to dashboard
+    };
+    const handleShow = () => setShow(true);
+
+    useEffect(handleShow, []);
+
+    return (
+        <>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Quiz Successfully Created!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Congrats, the Quiz is created successfully, go to admin
+                    dashboard to access the Quiz
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success" onClick={handleClose}>
+                        Understood
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+};
+
+export default SuccessModal;

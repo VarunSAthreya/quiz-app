@@ -24,7 +24,6 @@ const OptionContainer = (props) => {
         setQuestions([...questions]);
     };
     const changeHandlerSwitch = (checked) => {
-        console.log(checked, i + 1);
         setIsChecked(checked);
 
         options[i].isAnswer = checked;
@@ -48,7 +47,7 @@ const OptionContainer = (props) => {
             setOptionTitle(questions[quesIndex].options[i].title || '');
             setIsChecked(questions[quesIndex].options[i].isAnswer || false);
         } catch {
-            console.log('ok');
+            // console.log('First option in array');
         }
     }, [quesDeleteState]);
 
