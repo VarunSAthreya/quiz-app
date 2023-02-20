@@ -27,6 +27,11 @@ UserSchema.virtual('id').get(function () {
 // To ensure virtual fields are serialized.
 UserSchema.set('toJSON', {
     virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
 });
 
 export default mongoose.model('User', UserSchema);
