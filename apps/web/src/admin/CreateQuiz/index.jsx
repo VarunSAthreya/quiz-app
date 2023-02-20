@@ -4,6 +4,7 @@ import AdminDetailsModal from './Components/AdminDetailsModal';
 import GenerateQuizButton from './Components/GenerateQuizButton';
 import Header from './Components/Header';
 import QuestionContainer from './Components/QuestionContainer';
+import PreviewButton from './Components/PreviewButton';
 import './styles/admin.css';
 
 const CreateQuiz = () => {
@@ -48,13 +49,16 @@ const CreateQuiz = () => {
                     setQuestions={setQuestions}
                 />
                 {questions.length > 0 ? (
-                    <GenerateQuizButton
-                        questions={questions}
-                        quizName={quizName}
-                        adminName={adminName}
-                        adminEmail={adminEmail}
-                        quizDescription={quizDescription}
-                    />
+                    <>
+                        <GenerateQuizButton
+                            questions={questions}
+                            quizName={quizName}
+                            adminName={adminName}
+                            adminEmail={adminEmail}
+                            quizDescription={quizDescription}
+                        />
+                        <PreviewButton />
+                    </>
                 ) : (
                     ''
                 )}
