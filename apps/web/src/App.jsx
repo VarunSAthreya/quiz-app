@@ -6,6 +6,7 @@ import {
     Routes,
 } from 'react-router-dom';
 import CreateQuiz from './admin/CreateQuiz';
+import ShowScore from './user/Components/ShowScore';
 
 function App() {
     // ! TODO: IMPORT THE REQUIRED COMPONENT AND REPLACE HERE
@@ -18,6 +19,7 @@ function App() {
                 {/* <Route path="/quiz/:id" element={<TakeQuiz />} /> */}
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
                 {/* <Route path="/quiz/report/:id" element={<QuizReport />} /> */}
+                <Route path="/" element={<ShowScore />} />
             </Routes>
         </Router>
     );
