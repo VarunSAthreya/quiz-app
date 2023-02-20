@@ -57,7 +57,7 @@ export const getAllQuiz = async (
         const quizzes = await Quiz.find({});
         const jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
 
-        res.status(201).json({
+        res.status(200).json({
             message: 'Fetched quizzes Successfully!',
             data: jsonQuiz,
         });
@@ -98,7 +98,7 @@ export const getQUiz = async (
             });
         }
 
-        res.status(201).json({
+        res.status(200).json({
             message: 'Fetched quiz Successfully!',
             data: quiz.toJSON(),
         });

@@ -11,7 +11,7 @@ export const getReports = async (
         const reports = await QuizReport.find();
         const jsonReports = reports.map((report) => report.toJSON());
 
-        res.status(201).json({
+        res.status(200).json({
             message: 'Fetched quiz reports Successfully!',
             data: jsonReports,
         });
@@ -52,7 +52,7 @@ export const getReportById = async (
             });
         }
 
-        res.status(201).json({
+        res.status(200).json({
             message: 'Fetched report Successfully!',
             data: report.toJSON(),
         });
