@@ -26,6 +26,7 @@ OptionSchema.set('toJSON', {
         delete ret.isAnswer;
         delete ret._id;
         delete ret.__v;
+        ret.isSelected = false;
         return ret;
     },
 });
