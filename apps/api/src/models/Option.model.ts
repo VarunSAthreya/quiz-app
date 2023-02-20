@@ -22,6 +22,12 @@ OptionSchema.virtual('id').get(function () {
 
 OptionSchema.set('toJSON', {
     virtuals: true,
+    transform(doc, ret, options) {
+        delete ret.isAnswer;
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
 });
 
 export default OptionSchema;

@@ -24,6 +24,11 @@ QuizSubmissionSchema.virtual('id').get(function () {
 
 QuizSubmissionSchema.set('toJSON', {
     virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
 });
 
 export default mongoose.model('QuizSubmission', QuizSubmissionSchema);
