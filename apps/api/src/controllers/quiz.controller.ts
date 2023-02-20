@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import AppError from '../helper/AppError';
-import calculateScore from '../helper/processQuiz';
+import calculateScore from '../helper/calculateScore';
 import { Quiz, QuizReport, QuizSubmission, User } from '../models';
 
 export const createQuiz = async (
