@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import Header from './Header';
-import AddQuestionButton from './AddQuestionButton';
-import QuestionContainer from './QuestionContainer';
-import GenerateQuizButton from './GenerateQuizButton';
-import AdminDetailsModal from './AdminDetailsModal';
-import '../styles/admin.css';
+import AddQuestionButton from './Components/AddQuestionButton';
+import AdminDetailsModal from './Components/AdminDetailsModal';
+import GenerateQuizButton from './Components/GenerateQuizButton';
+import Header from './Components/Header';
+import QuestionContainer from './Components/QuestionContainer';
+import './styles/admin.css';
 
-const QuizContainer = () => {
+const CreateQuiz = () => {
     const [quizName, setQuizName] = useState('');
     const [quesDeleteState, setQuesDeleteState] = useState(0);
     const [questions, setQuestions] = useState([]);
@@ -30,10 +30,9 @@ const QuizContainer = () => {
             />
             <Header quizName={quizName} setQuizName={setQuizName} />
             {questions.map((ele, ind) => {
-                // console.log(questions);
                 return (
                     <QuestionContainer
-                        key={ind}
+                        key={`question-${ind}`}
                         ind={ind}
                         data={ele}
                         questions={questions}
@@ -64,4 +63,4 @@ const QuizContainer = () => {
     );
 };
 
-export default QuizContainer;
+export default CreateQuiz;

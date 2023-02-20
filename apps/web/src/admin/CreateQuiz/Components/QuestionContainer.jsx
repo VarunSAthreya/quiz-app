@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import AddOptionButton from './AddOptionButton';
-import OptionContainer from './OptionContainer';
-import DeleteQuesButton from './DeleteQuesButton';
-import PointContainer from './PointContainer';
 import Form from 'react-bootstrap/Form';
+import AddOptionButton from './AddOptionButton';
+import DeleteQuesButton from './DeleteQuesButton';
+import OptionContainer from './OptionContainer';
+import PointContainer from './PointContainer';
 
 const QuestionContainer = (props) => {
     const { quesDeleteState, setQuesDeleteState } = props;
@@ -64,7 +64,7 @@ const QuestionContainer = (props) => {
                 return (
                     <OptionContainer
                         i={i}
-                        key={i}
+                        key={`option-${i}`}
                         questions={props.questions}
                         setQuestions={props.setQuestions}
                         options={options}
