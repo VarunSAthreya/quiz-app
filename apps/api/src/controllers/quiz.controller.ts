@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import AppError from '../helper/AppError';
-import { Quiz, QuizReport, User } from '../models';
+import { Quiz, User } from '../models';
 
 export const createQuiz = async (
     req: Request,
@@ -101,30 +101,6 @@ export const getQUiz = async (
         res.status(201).json({
             message: 'Fetched quiz Successfully!',
             data: quiz.toJSON(),
-        });
-    } catch (err: any) {
-        next(
-            new AppError({
-                message: err.message || 'Server error occurred!',
-                statusCode: err.statusCode || 400,
-                stack: err.stack || '',
-            })
-        );
-    }
-};
-
-export const getReports = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    try {
-        const reports = await QuizReport.find();
-        const jsonReports = reports.map((report) => report.toJSON());
-
-        res.status(201).json({
-            message: 'Fetched quiz reports Successfully!',
-            data: jsonReports,
         });
     } catch (err: any) {
         next(
