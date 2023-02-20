@@ -9,7 +9,6 @@ const OptionContainer = (props) => {
         options,
         setOptions,
         quesIndex,
-        ele,
         quesDeleteState,
     } = props;
     const [optionTitle, setOptionTitle] = useState('');
@@ -47,7 +46,7 @@ const OptionContainer = (props) => {
             setOptionTitle(questions[quesIndex].options[i].title || '');
             setIsChecked(questions[quesIndex].options[i].isAnswer || false);
         } catch {
-            // console.log('First option in array');
+            // * console.log('First option in array');
         }
     }, [quesDeleteState]);
 

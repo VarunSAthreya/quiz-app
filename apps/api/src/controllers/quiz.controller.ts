@@ -35,7 +35,31 @@ export const createQuiz = async (
 
         res.status(201).json({
             message: 'Quiz Created Successfully!',
-            data: savedQuiz.toObject(),
+            data: savedQuiz.toJSON(),
+        });
+    } catch (err: any) {
+        next(
+            new AppError({
+                message: err.message || 'Server error occurred!',
+                statusCode: err.statusCode || 400,
+                stack: err.stack || '',
+            })
+        );
+    }
+};
+
+export const getAllQuiz = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const quizzes = await Quiz.find({});
+        const jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
+
+        res.status(201).json({
+            message: 'Quiz Created Successfully!',
+            data: jsonQuiz,
         });
     } catch (err: any) {
         next(
