@@ -3,8 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import errorHandler from './middleware/errorHandler';
-import { default as quizRouter } from './routes/quiz.route';
-import { default as submissionRoute } from './routes/submission.route';
+import { quizRoute, submissionRoute } from './routes';
 
 const app = express();
 
@@ -21,7 +20,7 @@ app.get('/', (_, res) => {
     });
 });
 
-app.use('/quiz', quizRouter);
+app.use('/quiz', quizRoute);
 app.use('/submit', submissionRoute);
 
 app.use(errorHandler);
