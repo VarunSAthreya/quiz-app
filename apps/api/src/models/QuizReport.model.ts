@@ -19,4 +19,17 @@ const QuizReportSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+QuizReportSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuizReportSchema.set('toJSON', {
+    virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
+});
+
 export default mongoose.model('QuizReport', QuizReportSchema);

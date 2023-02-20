@@ -16,4 +16,18 @@ const OptionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+OptionSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+OptionSchema.set('toJSON', {
+    virtuals: true,
+    transform(doc, ret, options) {
+        delete ret.isAnswer;
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
+});
+
 export default OptionSchema;

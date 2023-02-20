@@ -18,4 +18,17 @@ const QuizSubmissionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+QuizSubmissionSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+QuizSubmissionSchema.set('toJSON', {
+    virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
+});
+
 export default mongoose.model('QuizSubmission', QuizSubmissionSchema);
