@@ -55,23 +55,35 @@ export const getAllQuiz = async (
     next: NextFunction
 ) => {
     try {
+        const {
+            query: { report },
+        } = req;
+
         const quizzes = await Quiz.find({});
+        let jsonQuiz: any[] = [];
 
-        const jsonQuiz: any[] = [];
-        for (const quiz of quizzes) {
-            const json = quiz.toJSON();
-            const report = await QuizReport.findOne({ quizID: quiz._id });
-            const result: any = { ...json };
+        if (!report || report === 'false') {
+            jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
+        } else {
+            const quizReport = await QuizReport.find();
+            for (const quiz of quizzes) {
+                const json = quiz.toJSON();
 
-            if (!report) {
-                result.quizTaken = 0;
-                result.avgScore = 0;
-            } else {
-                result.quizTaken = report.quizTaken;
-                result.avgScore = report?.avgScore;
+                const report = quizReport.find(
+                    (rep) => rep.quizID === quiz._id.toString()
+                );
+                const result: any = { ...json };
+
+                if (!report) {
+                    result.quizTaken = 0;
+                    result.avgScore = 0;
+                } else {
+                    result.quizTaken = report.quizTaken;
+                    result.avgScore = report?.avgScore;
+                }
+
+                jsonQuiz.push(result);
             }
-
-            jsonQuiz.push(result);
         }
 
         res.status(200).json({
