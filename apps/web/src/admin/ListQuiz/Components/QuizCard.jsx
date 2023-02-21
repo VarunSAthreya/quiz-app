@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router';
+import CopiedToast from './CopiedToast';
 import '../styles/admin.css';
 
 const QuizCardComponent = (props) => {
     const link = `quiz/${props.id}`;
     const [copySuccess, setCopySuccess] = useState('');
     const navigate = useNavigate();
+    const [showtoast, setShowToast] = useState(false);
 
     // your function to copy here
     const navigateToQuiz = () => {
@@ -16,7 +18,7 @@ const QuizCardComponent = (props) => {
     const copyToClipBoard = async (copyMe) => {
         try {
             await navigator.clipboard.writeText(copyMe);
-            alert(`Copied the text: ${copyMe}`);
+            setShowToast(true);
             setCopySuccess('Copied!');
         } catch (err) {
             setCopySuccess('Failed to copy!', err);
@@ -34,6 +36,15 @@ const QuizCardComponent = (props) => {
                 </div>
                 <div className="avg-score">Average : 0{props.avgScore}</div>
                 <div className="copylink">
+                    {showtoast ? (
+                        <CopiedToast
+                            showtoast={showtoast}
+                            setShowToast={setShowToast}
+                        />
+                    ) : (
+                        ''
+                    )}
+
                     <Button
                         variant="outline-light"
                         className="copyquizbutton"
