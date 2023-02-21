@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/admin.css';
 
-const CreatequizButton = () => {
+const CreateQuizButton = () => {
     const navigate = useNavigate();
 
     const clickHandler = () => {
@@ -28,4 +28,4 @@ const CreatequizButton = () => {
     );
 };
 
-export default CreatequizButton;
+export default CreateQuizButton;

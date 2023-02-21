@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router';
-import CopiedToast from './CopiedToast';
 import '../styles/admin.css';
+import CopiedToast from './CopiedToast';
 
 const QuizCardComponent = (props) => {
     const link = `quiz/${props.id}`;
     const [copySuccess, setCopySuccess] = useState('');
     const navigate = useNavigate();
-    const [showtoast, setShowToast] = useState(false);
+    const [showToast, setShowToast] = useState(false);
 
     // your function to copy here
     const navigateToQuiz = () => {
@@ -24,7 +24,7 @@ const QuizCardComponent = (props) => {
             setCopySuccess('Failed to copy!', err);
         }
     };
-    let variant = 'primary';
+
     return (
         <div className="quizflexcontainer">
             <div className="quiz-list">
@@ -36,13 +36,11 @@ const QuizCardComponent = (props) => {
                 </div>
                 <div className="avg-score">Average : 0{props.avgScore}</div>
                 <div className="copylink">
-                    {showtoast ? (
+                    {showToast && (
                         <CopiedToast
-                            showtoast={showtoast}
+                            showToast={showToast}
                             setShowToast={setShowToast}
                         />
-                    ) : (
-                        ''
                     )}
 
                     <Button

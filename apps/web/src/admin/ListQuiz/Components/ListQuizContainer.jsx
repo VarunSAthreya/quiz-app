@@ -1,9 +1,8 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import QuizCardComponent from './QuizCard';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
-const Quizcardcontaier = () => {
+const ListQuizContainer = () => {
     const [quizzes, setQuizzes] = useState(null);
     const fetchQuizzes = () => {
         const getQuizzes = async () => {
@@ -37,11 +36,11 @@ const Quizcardcontaier = () => {
                             className="quiz-listcomponent"
                             // paas the whole object as a prop here
                             data={quizzes.data}
-                        ></QuizCardComponent>
+                        />
                     ))}
             </div>
         </div>
     );
 };
 
-export default Quizcardcontaier;
+export default ListQuizContainer;
