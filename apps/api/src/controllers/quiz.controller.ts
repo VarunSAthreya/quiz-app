@@ -55,11 +55,39 @@ export const getAllQuiz = async (
     next: NextFunction
 ) => {
     try {
-        const quizzes = await Quiz.find({});
-        const jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
+        const {
+            query: { report },
+        } = req;
 
-        res.status(201).json({
-            message: 'Quiz Created Successfully!',
+        const quizzes = await Quiz.find({});
+        let jsonQuiz: any[] = [];
+
+        if (!report || report === 'false') {
+            jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
+        } else {
+            const quizReport = await QuizReport.find();
+            for (const quiz of quizzes) {
+                const json = quiz.toJSON();
+
+                const report = quizReport.find(
+                    (rep) => rep.quizID === quiz._id.toString()
+                );
+                const result: any = { ...json };
+
+                if (!report) {
+                    result.quizTaken = 0;
+                    result.avgScore = 0;
+                } else {
+                    result.quizTaken = report.quizTaken;
+                    result.avgScore = report?.avgScore;
+                }
+
+                jsonQuiz.push(result);
+            }
+        }
+
+        res.status(200).json({
+            message: 'Fetched quizzes Successfully!',
             data: jsonQuiz,
         });
     } catch (err: any) {
@@ -83,6 +111,13 @@ export const getQUiz = async (
             params: { id },
         } = req;
 
+        if (!id) {
+            throw new AppError({
+                message: 'Please provide the Quiz ID!',
+                statusCode: 401,
+            });
+        }
+
         const quiz = await Quiz.findById(id);
 
         if (!quiz) {
@@ -92,8 +127,8 @@ export const getQUiz = async (
             });
         }
 
-        res.status(201).json({
-            message: 'Quiz Created Successfully!',
+        res.status(200).json({
+            message: 'Fetched quiz Successfully!',
             data: quiz.toJSON(),
         });
     } catch (err: any) {
