@@ -7,13 +7,7 @@ import Form from 'react-bootstrap/Form';
 
 const QuizQuestion = (props) => {
     const { quiz } = props;
-    const [usersAnswer, setusersAnswer] = useState([]);
-    let submission = {};
-    submission.quizid = quiz.id;
-    // console.log('submission', submission);
-
-    const checkedOption = (question, option, index) => {
-        console.log(option);
+    const checkedOption = (question, option) => {
         if (question.isMultiple) {
             if (option.isSelected) {
                 option.isSelected = false;
@@ -26,18 +20,14 @@ const QuizQuestion = (props) => {
             });
             option.isSelected = true;
         }
-
-        // console.log('Optons after clicked', option);
         // console.log('quiz', quiz);
-        // console.log('UsersAnswer:', usersAnswer);
-        // console.log('OptionsArray:', usersAnswer[index].answers);
     };
-    const renderCheckbox = (question, index) => {
+    const renderCheckbox = (question) => {
         return (
             <div className="QnA" key={question.id}>
                 <Card border="success" style={{ width: '35rem' }}>
                     <Card.Body>
-                        <Card.Title>{question.title}</Card.Title>
+                        <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
                 <br />
@@ -52,11 +42,7 @@ const QuizQuestion = (props) => {
                                         type="checkbox"
                                         id="inline-checkbox-1"
                                         onChange={(e) => {
-                                            checkedOption(
-                                                question,
-                                                option,
-                                                index
-                                            );
+                                            checkedOption(question, option);
                                         }}
                                     />
                                 );
@@ -69,12 +55,12 @@ const QuizQuestion = (props) => {
         );
     };
 
-    const renderRadio = (question, index) => {
+    const renderRadio = (question) => {
         return (
             <div className="QnA" key={question.id}>
                 <Card border="success" style={{ width: '35rem' }}>
                     <Card.Body>
-                        <Card.Title>{question.title}</Card.Title>
+                        <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
                 <br />
@@ -89,11 +75,7 @@ const QuizQuestion = (props) => {
                                         type="radio"
                                         id="inline-radio-1"
                                         onChange={(e) => {
-                                            checkedOption(
-                                                question,
-                                                option,
-                                                index
-                                            );
+                                            checkedOption(question, option);
                                         }}
                                     />
                                 );
@@ -106,10 +88,10 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return quiz.questions.map((question, index) => {
+    return quiz.questions.map((question) => {
         return question.isMultiple
-            ? renderCheckbox(question, index)
-            : renderRadio(question, index);
+            ? renderCheckbox(question)
+            : renderRadio(question);
     });
 };
 export default QuizQuestion;
