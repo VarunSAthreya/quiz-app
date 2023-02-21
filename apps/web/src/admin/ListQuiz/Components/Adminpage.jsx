@@ -10,7 +10,7 @@ const AdminPageContainer = () => {
                 <CreatequizButton />
             </div>
 
-            <div className="listing-quiz_app">
+            <div className="listing-quiz-app">
                 <Quizcardcontaier />
             </div>
         </div>

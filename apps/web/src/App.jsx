@@ -5,7 +5,7 @@ import {
     Route,
     Routes,
 } from 'react-router-dom';
-import AdminPageContainer from './admin/Components/Adminpage';
+import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
 import CreateQuiz from './admin/CreateQuiz';
 import ShowScore from './user/Components/ShowScore';
 
