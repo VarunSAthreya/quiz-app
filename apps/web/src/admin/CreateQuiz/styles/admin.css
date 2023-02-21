@@ -32,7 +32,8 @@
 }
 
 .add-btn-container,
-.generate-quiz-btn-container {
+.generate-quiz-btn-container,
+.preview-btn-container {
     margin: 10px;
     display: flex;
     justify-content: center;
