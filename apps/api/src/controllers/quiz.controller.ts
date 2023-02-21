@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import AppError from '../helper/AppError';
-import { Quiz, User } from '../models';
+import { Quiz, QuizReport, User } from '../models';
 
 export const createQuiz = async (
     req: Request,
@@ -55,7 +55,24 @@ export const getAllQuiz = async (
 ) => {
     try {
         const quizzes = await Quiz.find({});
-        const jsonQuiz = quizzes.map((quiz) => quiz.toJSON());
+
+        const jsonQuiz: any[] = [];
+        for (const quiz of quizzes) {
+            console.log(quiz);
+            const json = quiz.toJSON();
+            const report = await QuizReport.findOne({ quizID: quiz._id });
+            const result: any = { ...json };
+
+            if (!report) {
+                result.quizTaken = 0;
+                result.avgScore = 0;
+            } else {
+                result.quizTaken = report.quizTaken;
+                result.avgScore = report?.avgScore;
+            }
+
+            jsonQuiz.push(result);
+        }
 
         res.status(200).json({
             message: 'Fetched quizzes Successfully!',
