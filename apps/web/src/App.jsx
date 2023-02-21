@@ -5,6 +5,7 @@ import {
     Route,
     Routes,
 } from 'react-router-dom';
+import AdminPageContainer from './admin/Components/Adminpage';
 import CreateQuiz from './admin/CreateQuiz';
 import ShowScore from './user/Components/ShowScore';
 
@@ -14,7 +15,7 @@ function App() {
         <Router>
             <Routes>
                 {/* <Route path="/" element={<Navigate replace to="/quiz" />} /> */}
-                {/* <Route path="/quiz" element={<ListAllQuiz />} /> */}
+                <Route path="/quiz" element={<AdminPageContainer />} />
                 <Route path="/quiz/create" element={<CreateQuiz />} />
                 {/* <Route path="/quiz/:id" element={<TakeQuiz />} /> */}
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
