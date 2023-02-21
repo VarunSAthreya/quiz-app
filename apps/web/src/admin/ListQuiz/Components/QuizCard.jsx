@@ -4,37 +4,34 @@ import { useNavigate } from 'react-router';
 import '../styles/admin.css';
 import CopiedToast from './CopiedToast';
 
-const QuizCardComponent = (props) => {
-    const link = `quiz/${props.id}`;
-    const [copySuccess, setCopySuccess] = useState('');
+const QuizCardComponent = ({ quiz }) => {
     const navigate = useNavigate();
     const [showToast, setShowToast] = useState(false);
 
     // your function to copy here
     const navigateToQuiz = () => {
-        navigate(link);
+        navigate(`/quiz/${quiz.id}`);
     };
 
-    const copyToClipBoard = async (copyMe) => {
+    const copyToClipBoard = async (id) => {
         try {
-            await navigator.clipboard.writeText(copyMe);
+            await navigator.clipboard.writeText(
+                `${window.location.host}/quiz/${id}`
+            );
             setShowToast(true);
-            setCopySuccess('Copied!');
         } catch (err) {
-            setCopySuccess('Failed to copy!', err);
+            console.log(err.message);
         }
     };
 
     return (
         <div className="quizflexcontainer">
             <div className="quiz-list">
-                <div className="quiz-title">
-                    Name : sgdhjgdhjgsadhgsadsgsfgsfghshfgshg{props.title}
-                </div>
+                <div className="quiz-title">{quiz.title}</div>
                 <div className="total-taken">
-                    Total taken : 0{props.quizTaken}
+                    Total taken : {quiz.quizTaken}
                 </div>
-                <div className="avg-score">Average : 0{props.avgScore}</div>
+                <div className="avg-score">Average : {quiz.avgScore}</div>
                 <div className="copylink">
                     {showToast && (
                         <CopiedToast
@@ -46,7 +43,7 @@ const QuizCardComponent = (props) => {
                     <Button
                         variant="outline-light"
                         className="copyquizbutton"
-                        onClick={() => copyToClipBoard(link)}
+                        onClick={() => copyToClipBoard(quiz.id)}
                     >
                         Copy
                     </Button>

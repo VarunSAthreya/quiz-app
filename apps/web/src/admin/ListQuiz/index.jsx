@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateQuizButton from './Components/CreateQuizButton';
-import QuizCardContainer from './Components/QuizCardContainer';
+import ListQuizContainer from './Components/ListQuizContainer';
 import './styles/admin.css';
 
 const AdminPageContainer = () => {
@@ -11,7 +11,7 @@ const AdminPageContainer = () => {
             </div>
 
             <div className="listing-quiz-app">
-                <QuizCardContainer />
+                <ListQuizContainer />
             </div>
         </div>
     );

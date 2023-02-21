@@ -11,20 +11,18 @@ const CreateQuizButton = () => {
     };
 
     return (
-        <>
-            <div className="create-btn-container">
-                <Button
-                    size="lg"
-                    className=""
-                    variant="success"
-                    onClick={clickHandler}
-                >
-                    <div className="content">
-                        CREATE NEW QUIZ <FaPlus />
-                    </div>
-                </Button>
-            </div>
-        </>
+        <div className="create-btn-container">
+            <Button
+                size="md"
+                className=""
+                variant="success"
+                onClick={clickHandler}
+            >
+                <div className="content">
+                    CREATE NEW QUIZ <FaPlus />
+                </div>
+            </Button>
+        </div>
     );
 };
 
