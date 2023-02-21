@@ -26,17 +26,6 @@ body {
     display: flex;
     justify-content: center;
 }
-.userCredentials{
-    /* background-color: blanchedalmond; */
-    display: flex;
-    /* border: 1px solid yellowgreen; */
-}
-.email{
-    width: 50vw;
-}
-.username{
-    width: 50vw;
-}
 .quizContainer {
     background-color: var(--background-color);
     border: solid 2px black;
@@ -44,7 +33,7 @@ body {
     /* height: 80vh; */
     text-align: center;
     margin: 0 auto;
-    padding: 5%;
+    padding: 5% 3%;
 }
 .userCredentials{
     /* background-color: red; */

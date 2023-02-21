@@ -125,7 +125,6 @@ const QuizContainer = () => {
                                 placeholder="User Name"
                                 value={username}
                                 onChange={changeUsername}
-                                className="username"
                             />
                         </Form.Group>
                     </Row>
@@ -140,7 +139,6 @@ const QuizContainer = () => {
                                 type="email"
                                 placeholder="Email"
                                 name="email"
-                                className="email"
                                 value={email}
                                 onChange={changeEmail}
                                 aria-describedby="inputGroupPrepend"
