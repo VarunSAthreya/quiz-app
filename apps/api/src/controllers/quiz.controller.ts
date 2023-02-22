@@ -219,8 +219,7 @@ export const submitQuiz = async (
         res.status(201).json({
             message: 'Quiz Submitted Successfully!!',
             data: {
-                score,
-                totalPoints: quiz.totalPoints,
+                id: quizSubmission._id,
             },
         });
     } catch (err: any) {
