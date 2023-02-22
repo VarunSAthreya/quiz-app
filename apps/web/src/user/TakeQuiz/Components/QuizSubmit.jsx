@@ -1,22 +1,14 @@
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { useState, useEffect } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import { Loading } from './Loading';
 const QuizSubmit = (props) => {
     const { lgShow, setLgShow, status, setStatus, score, setScore } = props;
     const [loading, setLoading] = useState(true);
 
-    function GrowExample(loadingMessage) {
-        return (
-            <>
-                <Spinner animation="grow" />
-                <p>{loadingMessage}</p>
-            </>
-        );
-    }
     if (status) {
         setLoading(false);
     }
-    // if (loading) return GrowExample('Loading Quiz !');
+
     return (
         <>
             <Modal
@@ -34,8 +26,10 @@ const QuizSubmit = (props) => {
                     Your response has been recorded Successfully. Please wait
                     till we calculate your score.
                     <hr />
-                    {loading === true ? GrowExample('Loading Score') : ''}
-                    {loading === false ? `Your score is : ${score}` : ''}
+                    {loading === true && (
+                        <Loading message={'Submitting Quiz!'} />
+                    )}
+                    {loading === false && `Your score is : ${score}`}
                 </Modal.Body>
             </Modal>
         </>

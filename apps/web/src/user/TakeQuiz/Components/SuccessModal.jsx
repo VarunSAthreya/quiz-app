@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-const UnSuccessfulModal = (props) => {
-    const { status, setStatus, message } = props;
+import { useNavigate } from 'react-router-dom';
+
+const SuccessModal = (props) => {
+    const { status, setStatus } = props;
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
         setStatus('');
+        useNavigate(`/quiz/report/${quiz.id}`);
     };
 
     const handleShow = () => setShow(true);
@@ -16,12 +19,14 @@ const UnSuccessfulModal = (props) => {
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Submission Failed </Modal.Title>
+                    <Modal.Title>Quiz Submitted Successfully</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Quiz submission unsuccessful !{message}</Modal.Body>
-
+                <Modal.Body>
+                    Your response has been recorded Successfully ! You may close
+                    this window.
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="success" onClick={handleClose}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -29,4 +34,5 @@ const UnSuccessfulModal = (props) => {
         </>
     );
 };
-export default UnSuccessfulModal;
+
+export default SuccessModal;

@@ -5,10 +5,10 @@ import {
     Route,
     Routes,
 } from 'react-router-dom';
-import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
 import CreateQuiz from './admin/CreateQuiz';
-import ShowScore from './user/Components/ShowScore';
-import TakeQuiz from './user/Components/TakeQuizIndex';
+import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
+import TakeQuiz from './user/TakeQuiz';
+import ShowScore from './user/TakeQuiz/Components/ShowScore';
 
 function App() {
     // ! TODO: IMPORT THE REQUIRED COMPONENT AND REPLACE HERE

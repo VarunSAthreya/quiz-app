@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import { BsPrefixComponent } from 'react-bootstrap/esm/helpers';
-import { Prev } from 'react-bootstrap/esm/PageItem';
 import Form from 'react-bootstrap/Form';
 
 const QuizQuestion = (props) => {
@@ -20,8 +16,8 @@ const QuizQuestion = (props) => {
             });
             option.isSelected = true;
         }
-        // console.log('quiz', quiz);
     };
+
     const renderCheckbox = (question) => {
         return (
             <div className="QnA" key={question.id}>
@@ -37,6 +33,7 @@ const QuizQuestion = (props) => {
                             {question.options.map((option) => {
                                 return (
                                     <Form.Check
+                                        key={option.id}
                                         label={option.title}
                                         name="group1"
                                         type="checkbox"
@@ -70,6 +67,7 @@ const QuizQuestion = (props) => {
                             {question.options.map((option) => {
                                 return (
                                     <Form.Check
+                                        key={option.id}
                                         label={option.title}
                                         name={props.question.id}
                                         type="radio"

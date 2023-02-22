@@ -1,22 +1,16 @@
-import QuizQuestion from './QuizQuestion';
-import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
-import { useState, useEffect } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
-import QuizSubmit from './QuizSubmit';
 import axios from 'axios';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { VITE_APP_API_URL } from '../../env';
-import SuccessModal from './SuccessModal';
+import { VITE_APP_API_URL } from '../../../env';
+import QuizQuestion from './QuizQuestion';
+import QuizSubmit from './QuizSubmit';
 import UnSuccessfulModal from './UnsuccessfulModal';
-const url =
-    'https://raw.githubusercontent.com/VirajLY/Personal-Portfolio/main/quiz.json';
-const QuizContainer = () => {
-    const [quiz, setQuiz] = useState({});
+
+const QuizContainer = ({ quiz }) => {
     const [index, setIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
     const [lgShow, setLgShow] = useState(false);
     const [validated, setValidated] = useState(false);
     const [status, setStatus] = useState(null);
@@ -25,18 +19,6 @@ const QuizContainer = () => {
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
 
-    useEffect(() => {
-        fetch(url)
-            .then((json) => json.json())
-            .then((data) => {
-                setQuiz(data[0]);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err.message);
-                setLoading(false);
-            });
-    }, []);
     const changeUsername = (e) => {
         setUserName(e.target.value);
     };
@@ -56,14 +38,19 @@ const QuizContainer = () => {
         setValidated(true);
     };
     const submitQuiz = () => {
-        quiz.username = username;
-        quiz.email = email;
+        const payload = {
+            quiz,
+            username,
+            email,
+        };
+
         setLgShow(true);
-        console.log('quiz is', quiz);
+        console.log('payload is', payload);
         axios
-            .post(`${VITE_APP_API_URL}/submit`, quiz)
+            .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
             .then((data) => {
                 console.log('Submission Successful');
+                console.log(data);
                 setStatus(true);
                 setScore(data);
             })
@@ -74,30 +61,15 @@ const QuizContainer = () => {
                 setErrorMessage(err.message);
             });
     };
-    function GrowExample(loadingMessage) {
-        return (
-            <>
-                <Spinner animation="grow" />
-                <p>{loadingMessage}</p>
-            </>
-        );
-    }
-    if (loading) return GrowExample('Loading Quiz !');
+
     return (
         <>
-            {/* {status === true ? (
-                <SuccessModal status={status} setStatus={setStatus} />
-            ) : (
-                ''
-            )} */}
-            {status === false ? (
+            {status === false && (
                 <UnSuccessfulModal
                     message={errorMessage}
                     status={status}
                     setStatus={setStatus}
                 />
-            ) : (
-                ''
             )}
 
             {lgShow && (
