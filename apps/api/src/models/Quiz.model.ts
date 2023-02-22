@@ -52,5 +52,13 @@ QuizSchema.set('toJSON', {
         return ret;
     },
 });
+QuizSchema.set('toObject', {
+    virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    },
+});
 
 export default mongoose.model('Quiz', QuizSchema);

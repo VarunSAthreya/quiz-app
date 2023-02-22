@@ -109,6 +109,7 @@ export const getQUiz = async (
     try {
         const {
             params: { id },
+            query: { nofilter },
         } = req;
 
         if (!id) {
@@ -124,6 +125,13 @@ export const getQUiz = async (
             throw new AppError({
                 message: 'Invalid ID, Cannot get the requested quiz.',
                 statusCode: 401,
+            });
+        }
+
+        if (nofilter === 'true') {
+            return res.status(200).send({
+                message: 'Fetched quiz Successfully!',
+                data: quiz.toObject(),
             });
         }
 

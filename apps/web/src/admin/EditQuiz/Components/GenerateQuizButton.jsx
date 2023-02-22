@@ -1,7 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { VITE_APP_API_URL } from '../../../env';
 import SuccessModal from './SuccessModal';
 import UnSuccessfulModal from './UnSuccessfulModal';
 
@@ -10,19 +8,16 @@ const GenerateQuizButton = (props) => {
     const [successStatus, setSuccessStatus] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
-    useEffect(() => {
-        console.log(quizData);
-    }, [quizData]);
-
     const clickHandler = () => {
         const data = {
-            title: quizName,
-            questions: [...questions],
+            ...quizData,
         };
+        data.title = quizName;
+        data.questions = [...questions];
 
         setQuizData(data);
-
         console.log(data);
+
         // axios
         //     .post(`${VITE_APP_API_URL}/quiz`, quizData)
         //     .then(() => {
