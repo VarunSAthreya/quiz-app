@@ -31,7 +31,9 @@ const QuizCardComponent = ({ quiz }) => {
                 <div className="total-taken">
                     Total taken : {quiz.quizTaken}
                 </div>
-                <div className="avg-score">Average : {quiz.avgScore}</div>
+                <div className="avg-score">
+                    Average : {quiz.avgScore} / {quiz.totalPoints}
+                </div>
                 <div className="copylink">
                     {showToast && (
                         <CopiedToast

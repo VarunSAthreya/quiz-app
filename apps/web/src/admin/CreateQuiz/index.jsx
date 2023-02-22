@@ -3,8 +3,8 @@ import AddQuestionButton from './Components/AddQuestionButton';
 import AdminDetailsModal from './Components/AdminDetailsModal';
 import GenerateQuizButton from './Components/GenerateQuizButton';
 import Header from './Components/Header';
-import QuestionContainer from './Components/QuestionContainer';
 import PreviewButton from './Components/PreviewButton';
+import QuestionContainer from './Components/QuestionContainer';
 import './styles/admin.css';
 
 const CreateQuiz = () => {
@@ -30,25 +30,23 @@ const CreateQuiz = () => {
                 setQuizDescription={setQuizDescription}
             />
             <Header quizName={quizName} setQuizName={setQuizName} />
-            {questions.map((ele, ind) => {
-                return (
-                    <QuestionContainer
-                        key={`question-${ind}`}
-                        ind={ind}
-                        data={ele}
-                        questions={questions}
-                        setQuestions={setQuestions}
-                        quesDeleteState={quesDeleteState}
-                        setQuesDeleteState={setQuesDeleteState}
-                    />
-                );
-            })}
+            {questions.map((ele, ind) => (
+                <QuestionContainer
+                    key={`question-${ind}`}
+                    ind={ind}
+                    data={ele}
+                    questions={questions}
+                    setQuestions={setQuestions}
+                    quesDeleteState={quesDeleteState}
+                    setQuesDeleteState={setQuesDeleteState}
+                />
+            ))}
             <div className="add-generate-container">
                 <AddQuestionButton
                     questions={questions}
                     setQuestions={setQuestions}
                 />
-                {questions.length > 0 ? (
+                {questions.length > 0 && (
                     <>
                         <GenerateQuizButton
                             questions={questions}
@@ -59,8 +57,6 @@ const CreateQuiz = () => {
                         />
                         <PreviewButton />
                     </>
-                ) : (
-                    ''
                 )}
             </div>
         </div>
