@@ -12,7 +12,8 @@ const SuccessModal = (props) => {
         //reset status
         setSuccessStatus('');
         setShow(false);
-        navigate(`/quiz/${quiz.id}`);
+        console.log('hey');
+        navigate(`/quiz`);
     };
     const handleShow = () => setShow(true);
 
