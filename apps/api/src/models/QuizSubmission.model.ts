@@ -6,11 +6,27 @@ const QuizSubmissionSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        quizTitle: {
+            type: String,
+            required: true,
+        },
         userID: {
             type: String,
             required: true,
         },
+        username: {
+            type: String,
+            required: true,
+        },
         score: {
+            type: Number,
+            required: true,
+        },
+        correctQuestions: {
+            type: Number,
+            required: true,
+        },
+        totalScore: {
             type: Number,
             required: true,
         },
@@ -27,6 +43,8 @@ QuizSubmissionSchema.set('toJSON', {
     transform(doc, ret, options) {
         delete ret._id;
         delete ret.__v;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });
