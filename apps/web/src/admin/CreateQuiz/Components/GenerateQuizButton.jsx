@@ -6,8 +6,15 @@ import SuccessModal from './SuccessModal';
 import UnSuccessfulModal from './UnSuccessfulModal';
 
 const GenerateQuizButton = (props) => {
-    const { quizName, questions, adminName, adminEmail, quizDescription } =
-        props;
+    const {
+        quizName,
+        questions,
+        adminName,
+        adminEmail,
+        quizDescription,
+        urlId,
+    } = props;
+
     const [successStatus, setSuccessStatus] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -18,6 +25,7 @@ const GenerateQuizButton = (props) => {
             email: adminEmail,
             description: quizDescription,
             questions: [...questions],
+            urlId,
         };
 
         console.log(data);

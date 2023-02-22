@@ -18,7 +18,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate replace to="/quiz" />} />
                 <Route path="/quiz" element={<AdminPageContainer />} />
-                <Route path="/quiz/create" element={<CreateQuiz />} />
+                <Route path="/create/:id" element={<CreateQuiz />} />
                 <Route path="/quiz/:id" element={<TakeQuiz />} />
                 <Route path="/submit/:id" element={<ShowSubmission />} />
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
