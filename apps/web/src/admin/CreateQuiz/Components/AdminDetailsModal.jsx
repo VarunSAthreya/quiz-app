@@ -48,7 +48,7 @@ const AdminDetailsModal = (props) => {
                             className="mb-3"
                             controlId="exampleForm.ControlInput2"
                         >
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label>Username</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Name"

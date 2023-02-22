@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/admin.css';
 
-const CreatequizButton = () => {
+const CreateQuizButton = () => {
     const navigate = useNavigate();
 
     const clickHandler = () => {
@@ -11,21 +11,19 @@ const CreatequizButton = () => {
     };
 
     return (
-        <>
-            <div className="create-btn-container">
-                <Button
-                    size="lg"
-                    className=""
-                    variant="success"
-                    onClick={clickHandler}
-                >
-                    <div className="content">
-                        CREATE NEW QUIZ <FaPlus />
-                    </div>
-                </Button>
-            </div>
-        </>
+        <div className="create-btn-container">
+            <Button
+                size="md"
+                className=""
+                variant="success"
+                onClick={clickHandler}
+            >
+                <div className="content">
+                    CREATE NEW QUIZ <FaPlus />
+                </div>
+            </Button>
+        </div>
     );
 };
 
-export default CreatequizButton;
+export default CreateQuizButton;
