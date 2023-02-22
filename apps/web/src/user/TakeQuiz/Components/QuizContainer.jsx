@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { useNavigate } from 'react-router';
 import { VITE_APP_API_URL } from '../../../env';
 import QuizQuestion from './QuizQuestion';
 import QuizSubmit from './QuizSubmit';
@@ -18,6 +19,8 @@ const QuizContainer = ({ quiz }) => {
     const [score, setScore] = useState(0);
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
+
+    const navigate = useNavigate();
 
     const changeUsername = (e) => {
         setUserName(e.target.value);
@@ -50,9 +53,9 @@ const QuizContainer = ({ quiz }) => {
             .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
             .then((data) => {
                 console.log('Submission Successful');
-                console.log(data);
+                console.log(data.data.data.id);
                 setStatus(true);
-                setScore(data);
+                navigate(`/submit/${data.data.data.id}`);
             })
             .catch((err) => {
                 console.log('Submission Unsuccessful', err);
