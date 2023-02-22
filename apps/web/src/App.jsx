@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import CreateQuiz from './admin/CreateQuiz';
 import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
+import ShowSubmission from './user/ShowSubmission';
 import TakeQuiz from './user/TakeQuiz';
 import ShowScore from './user/TakeQuiz/Components/ShowScore';
 
@@ -19,6 +20,8 @@ function App() {
                 <Route path="/quiz" element={<AdminPageContainer />} />
                 <Route path="/quiz/create" element={<CreateQuiz />} />
                 <Route path="/quiz/:id" element={<TakeQuiz />} />
+                <Route path="/submit/:id" element={<ShowSubmission />} />
+
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
                 {/* <Route path="/quiz/report/:id" element={<QuizReport />} /> */}
                 <Route path="/" element={<ShowScore />} />
