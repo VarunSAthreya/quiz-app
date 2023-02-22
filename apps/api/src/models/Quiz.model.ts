@@ -52,6 +52,7 @@ QuizSchema.set('toJSON', {
         return ret;
     },
 });
+
 QuizSchema.set('toObject', {
     virtuals: true,
     transform(doc, ret, options) {

@@ -120,6 +120,7 @@ export const getQUiz = async (
         }
 
         const quiz = await Quiz.findById(id);
+        console.log(quiz);
 
         if (!quiz) {
             throw new AppError({
@@ -137,6 +138,62 @@ export const getQUiz = async (
 
         res.status(200).json({
             message: 'Fetched quiz Successfully!',
+            data: quiz.toJSON(),
+        });
+    } catch (err: any) {
+        next(
+            new AppError({
+                message: err.message || 'Server error occurred!',
+                statusCode: err.statusCode || 400,
+                stack: err.stack || '',
+            })
+        );
+    }
+};
+
+export const updateQuiz = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const {
+            params: { id },
+            body,
+        } = req;
+
+        if (id !== body.id) {
+            throw new AppError({
+                message: 'Invalid request, the IDs does not match.',
+                statusCode: 401,
+            });
+        }
+        const { questions } = body;
+        if (!questions) {
+            throw new AppError({
+                message: 'Invalid payload.',
+                statusCode: 401,
+            });
+        }
+
+        body.totalPoints = questions.reduce(
+            (accumulator: number, currentObject: any) =>
+                accumulator + Number(currentObject.points),
+            0
+        );
+
+        const quiz = await Quiz.findByIdAndUpdate(id, body);
+        if (!quiz) {
+            throw new AppError({
+                message: "Invalid id, couldn't find quiz of given id.",
+                statusCode: 401,
+            });
+        }
+
+        await quiz.save();
+
+        res.status(200).json({
+            message: 'Updated quiz Successfully!',
             data: quiz.toJSON(),
         });
     } catch (err: any) {

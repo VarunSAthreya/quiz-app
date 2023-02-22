@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { VITE_APP_API_URL } from '../../../env';
 import SuccessModal from './SuccessModal';
 import UnSuccessfulModal from './UnSuccessfulModal';
 
@@ -18,18 +20,19 @@ const GenerateQuizButton = (props) => {
         setQuizData(data);
         console.log(data);
 
-        // axios
-        //     .post(`${VITE_APP_API_URL}/quiz`, quizData)
-        //     .then(() => {
-        //         console.log('Successful');
-        //         setSuccessStatus(true);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //         console.log('Unsuccessful', err);
-        //         setErrorMessage(err.response.data.message);
-        //         setSuccessStatus(false);
-        //     });
+        axios
+            .put(`${VITE_APP_API_URL}/quiz/${quizData.id}`, data)
+            .then((data) => {
+                console.log('Successful');
+                console.log(data.data);
+                setSuccessStatus(true);
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log('Unsuccessful', err);
+                setErrorMessage(err.response.data.message);
+                setSuccessStatus(false);
+            });
     };
 
     return (
