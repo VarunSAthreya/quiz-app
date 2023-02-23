@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
+import Loading from '../../utils/Loading';
 import Header from './Components/Header';
-import { Loading } from './Components/Loading';
 import QuizContainer from './Components/QuizContainer';
 import './style/style.css';
 function TakeQuiz() {

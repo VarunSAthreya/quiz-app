@@ -10,7 +10,7 @@ import CreateQuiz from './admin/CreateQuiz';
 import EditQuiz from './admin/EditQuiz';
 import AdminPageContainer from './admin/ListQuiz';
 import TakeQuizPreview from './admin/PreviewQuiz';
-import QuizIDSubmission from './admin/QuizReport';
+import QuizReport from './admin/QuizReport';
 import ShowSubmission from './user/ShowSubmission';
 import TakeQuiz from './user/TakeQuiz';
 
@@ -26,8 +26,8 @@ function App() {
                 <Route path="/submit/:id" element={<ShowSubmission />} />
                 <Route path="/preview/:id" element={<TakeQuizPreview />} />
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
-                {/* <Route path="/quiz/report/:id" element={<QuizReport />} /> */}
-                <Route path="/submit/quiz/:id" element={<QuizIDSubmission />} />
+                <Route path="/quiz/report/:id" element={<QuizReport />} />
+                {/* <Route path="/submit/quiz/:id" element={<QuizIDSubmission />} /> */}
                 <Route path="/edit/:id" element={<EditQuiz />} />
             </Routes>
         </Router>

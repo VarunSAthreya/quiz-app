@@ -49,7 +49,7 @@ export default function calculateScore(quiz: any, submittedQuiz: any) {
         }
         if (flag) {
             score += currentQuestion.points;
-            currentQuestion++;
+            correctQuestions++;
         }
     }
 

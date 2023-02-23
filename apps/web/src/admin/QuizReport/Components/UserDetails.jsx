@@ -1,22 +1,14 @@
-const UserList = (props) => {
+const UserList = ({ submission }) => {
     return (
         <div className="quizflexcontainer">
             <div className="user-list">
-                <div className="user-name">
-                    {/* props.quizId.userName*/}
-                    heefbfdbfbbb
-                </div>
-                <div className="createdAt">
-                    {/* props.quizId.userId.createdAt */}
-                    0/0/11
-                </div>
+                <div className="user-name">{submission.username}</div>
+                <div className="createdAt">{submission.createdAt}</div>
                 <div className="user-score">
-                    {/*props.quizId.userId.userScore */}
-                    50
+                    Correct Ans: {submission.correctQuestions}
                 </div>
                 <div className="total-score">
-                    {/*props. quizId.totalPoints*/}
-                    10
+                    Score: {submission.score + '/' + submission.totalScore}
                 </div>
             </div>
         </div>

@@ -1,71 +1,71 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import UserList from './Components/UserDetails';
 //`import { VITE_APP_API_URL } from '../../../env';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { VITE_APP_API_URL } from '../../env';
+import Loading from '../../utils/Loading';
+import UserList from './Components/UserDetails';
+import './styles/style.css';
 
-const UserSubmissions = () => {
-    // const params = useParams();
+const QuizReport = () => {
     const { id } = useParams();
+    console.log(id);
 
-    const [quizzes, setQuizzes] = useState(null);
-    const fetchQuizzes = () => {
-        const getQuizzes = async () => {
-            try {
-                {
-                    /* to get quizObject based on Quiz id*/
-                }
-                const quizzes = await axios.get(
-                    'http://localhost:3000/submit/quiz/${id}'
-                );
-                setQuizzes(quizzes);
-                // console.log(quizzes);
-                // console.log(quizzes.data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        getQuizzes();
-    };
+    const [report, setReport] = useState({});
+    const [submissions, setSubmissions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
-    useEffect(fetchQuizzes, []);
+    useEffect(() => {
+        setLoading(true);
+        Promise.all([
+            axios.get(`${VITE_APP_API_URL}/quiz/report/${id}`),
+            axios.get(`${VITE_APP_API_URL}/submit/quiz/${id}`),
+        ])
+            .then((res) => {
+                const [rep, sub] = res;
+                console.log({ rep, sub });
+                setReport(rep.data.data);
+                setSubmissions(sub.data.data);
+            })
+            .catch((err) => setError(err.message))
+            .finally(() => setLoading(false));
+    }, [id]);
+
+    if (loading) return <Loading message="Fetching data..." />;
+    if (error) {
+        return (
+            <div>
+                <h2>Error</h2>
+                <p>{error}</p>
+            </div>
+        );
+    }
 
     return (
         <div>
             <div className="listing-quiz">
                 <div className="listing-heading">
-                    <h1>
-                        {/*quizId.title */}
-                        Quiz-Title{id}
-                    </h1>
+                    <h1>{submissions[0].quizTitle}</h1>
                 </div>
                 <div className="quiz-detailes">
+                    <p>No. Of times Quiz Taken: {report.quizTaken}</p>
                     <p>
-                        {/* quizID.description */}
-                        Description:The given quiz contains the reuired details
-                        10 questions and 2 points each
-                    </p>
-                    <p>
-                        {/* quizID.TotalResponses*/}
-                        Total Responses:
-                    </p>
-                    <p>
-                        {/* quizId.AvgScore*/}
-                        Avg Score:
+                        Average Score:{' '}
+                        {(Math.round(report.avgScore * 100) / 100).toFixed(2) +
+                            ' / ' +
+                            report.totalScore}
                     </p>
                 </div>
 
                 <div className="quizzes">
-                    {/* received quiz object*/}
-                    {quizzes !== null &&
-                        //using number of submissions count  of the quiz Id  generating the user submissions cards
-                        quizzes.data.map((variant1) => (
+                    {submissions.length > 0 &&
+                        submissions.map((submit) => (
                             <UserList
-                                key={variant1.id}
+                                key={submit.id}
                                 className="quiz-listcomponent"
-                                // paasing  the quizid  object as a prop here
-                                data={quizzes.data}
-                            ></UserList>
+                                submission={submit}
+                            />
                         ))}
                 </div>
             </div>
@@ -73,4 +73,4 @@ const UserSubmissions = () => {
     );
 };
 
-export default UserSubmissions;
+export default QuizReport;
