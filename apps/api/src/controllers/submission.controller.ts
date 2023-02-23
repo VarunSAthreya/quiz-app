@@ -8,7 +8,7 @@ export const getSubmissions = async (
     next: NextFunction
 ) => {
     try {
-        const subs = await QuizSubmission.find();
+        const subs = await QuizSubmission.find().sort({ createdAt: -1 });
         const jsonSubs = subs.map((sub) => sub.toJSON());
 
         res.status(200).json({
