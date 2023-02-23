@@ -1,11 +1,8 @@
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import UserList from './UserDetails';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import React from 'react';
 //`import { VITE_APP_API_URL } from '../../../env';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route, Routes, Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Usersubmissions1 = () => {
     // const params = useParams();

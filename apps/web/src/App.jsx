@@ -6,7 +6,7 @@ import {
     Routes,
 } from 'react-router-dom';
 import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
-import QuizIDSubmission from './admin/QuizSubmission/Components/SubmissionContainer'
+import QuizIDSubmission from './admin/QuizSubmission/Components/SubmissionContainer';
 import CreateQuiz from './admin/CreateQuiz';
 import ShowScore from './user/Components/ShowScore';
 
@@ -22,7 +22,7 @@ function App() {
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
                 {/* <Route path="/quiz/report/:id" element={<QuizReport />} /> */}
                 <Route path="/" element={<ShowScore />} />
-                <Route path="/submit/quiz/:id" element={< QuizIDSubmission/>} />
+                <Route path="/submit/quiz/:id" element={<QuizIDSubmission />} />
             </Routes>
         </Router>
     );
