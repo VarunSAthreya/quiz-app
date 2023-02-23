@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import TakeQuizPreview from '../../PreviewQuiz';
 
 const PreviewModal = (props) => {
-    const { lgShow, setLgShow } = props;
+    const { lgShow, setLgShow, quizName, questions } = props;
     useEffect(() => {
         setLgShow(true);
     }, []);
@@ -19,7 +20,12 @@ const PreviewModal = (props) => {
                         Quiz Preview
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Data</Modal.Body>
+                <Modal.Body>
+                    <TakeQuizPreview
+                        quizName={quizName}
+                        questions={questions}
+                    />
+                </Modal.Body>
             </Modal>
         </>
     );

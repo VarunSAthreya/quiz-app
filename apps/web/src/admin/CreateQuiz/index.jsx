@@ -58,7 +58,10 @@ const CreateQuiz = () => {
                             adminEmail={adminEmail}
                             quizDescription={quizDescription}
                         />
-                        <PreviewButton />
+                        <PreviewButton
+                            quizName={quizName}
+                            questions={questions}
+                        />
                     </>
                 )}
             </div>
