@@ -19,7 +19,13 @@ const UnSuccessfulModal = (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Submission Failed </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Quiz submission unsuccessful !{message}</Modal.Body>
+                <Modal.Body>
+                    Quiz submission unsuccessful ! <br />
+                    Please ensure you have entered username & email.
+                    <br />
+                    <br />
+                    {message}
+                </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>

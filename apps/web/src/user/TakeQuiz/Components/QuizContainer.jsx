@@ -7,18 +7,19 @@ import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router';
 import { VITE_APP_API_URL } from '../../../env';
 import QuizQuestion from './QuizQuestion';
-import QuizSubmit from './QuizSubmit';
+// import QuizSubmit from './QuizSubmit';
 import UnSuccessfulModal from './UnsuccessfulModal';
+import ConfirmModal from './ConfirmModal';
 
 const QuizContainer = ({ quiz }) => {
     const [index, setIndex] = useState(0);
-    const [lgShow, setLgShow] = useState(false);
     const [validated, setValidated] = useState(false);
     const [status, setStatus] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [score, setScore] = useState(0);
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
+    const [confirmShow, setConfirmShow] = useState(false);
 
     const navigate = useNavigate();
 
@@ -40,30 +41,31 @@ const QuizContainer = ({ quiz }) => {
         }
         setValidated(true);
     };
-    const submitQuiz = () => {
-        const payload = {
-            quiz,
-            username,
-            email,
-        };
-
-        setLgShow(true);
-        console.log('payload is', payload);
-        axios
-            .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
-            .then((data) => {
-                console.log('Submission Successful');
-                console.log(data.data.data.id);
-                setStatus(true);
-                navigate(`/submit/${data.data.data.id}`);
-            })
-            .catch((err) => {
-                console.log('Submission Unsuccessful', err);
-                setLgShow(false);
-                setStatus(false);
-                setErrorMessage(err.message);
-            });
+    const confirmSubmit = () => {
+        setConfirmShow(true);
     };
+    // const submitQuiz = () => {
+    //     const payload = {
+    //         quiz,
+    //         username,
+    //         email,
+    //     };
+    //     console.log('payload is', payload);
+    //     axios
+    //         .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
+    //         .then((data) => {
+    //             console.log('Submission Successful');
+    //             console.log(data.data.data.id);
+    //             setStatus(true);
+    //             navigate(`/submit/${data.data.data.id}`);
+    //         })
+    //         .catch((err) => {
+    //             console.log('Submission Unsuccessful', err);
+    //             // setLgShow(false);
+    //             setStatus(false);
+    //             setErrorMessage(err.message);
+    //         });
+    // };
 
     return (
         <>
@@ -74,8 +76,22 @@ const QuizContainer = ({ quiz }) => {
                     setStatus={setStatus}
                 />
             )}
-
-            {lgShow && (
+            {confirmShow && (
+                <ConfirmModal
+                    confirmShow={confirmShow}
+                    setConfirmShow={setConfirmShow}
+                    status={status}
+                    setStatus={setStatus}
+                    score={score}
+                    setScore={setScore}
+                    quiz={quiz}
+                    username={username}
+                    email={email}
+                    message={errorMessage}
+                    setErrorMessage={setErrorMessage}
+                />
+            )}
+            {/* {lgShow && (
                 <QuizSubmit
                     lgShow={lgShow}
                     setLgShow={setLgShow}
@@ -84,7 +100,7 @@ const QuizContainer = ({ quiz }) => {
                     score={score}
                     setScore={setScore}
                 />
-            )}
+            )} */}
             <div className="userInfo">
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3, userCredentials">
@@ -93,7 +109,7 @@ const QuizContainer = ({ quiz }) => {
                             md="4"
                             controlId="validationCustom01"
                         >
-                            {/* <Form.Label>First name</Form.Label> */}
+                            {/* <Form.Label>User name</Form.Label> */}
                             <Form.Control
                                 required
                                 type="text"
@@ -137,7 +153,7 @@ const QuizContainer = ({ quiz }) => {
                     variant="success"
                     className="submitButton"
                     type="submit"
-                    onClick={submitQuiz}
+                    onClick={confirmSubmit}
                 >
                     Submit
                 </Button>
