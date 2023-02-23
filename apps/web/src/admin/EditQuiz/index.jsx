@@ -65,7 +65,10 @@ const EditQuiz = () => {
                             questions={questions}
                             quizName={quizName}
                         />
-                        <PreviewButton />
+                        <PreviewButton
+                            quizName={quizName}
+                            questions={questions}
+                        />
                     </>
                 )}
             </div>
