@@ -6,6 +6,7 @@ const PreviewModal = (props) => {
     const { lgShow, setLgShow, quizName, questions } = props;
     useEffect(() => {
         setLgShow(true);
+        console.log(quizName, questions);
     }, []);
     return (
         <>

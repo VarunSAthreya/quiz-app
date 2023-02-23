@@ -5,25 +5,52 @@ import { VITE_APP_API_URL } from '../../env';
 import Header from './Components/Header';
 import QuizContainer from './Components/QuizContainer';
 import './style/style.css';
-function TakeQuizPreview(props) {
+
+const TakeQuizPreview = (props) => {
     const { id } = useParams();
     const [quiz, setQuiz] = useState({});
+    const [state, setState] = useState(null);
+
     const { quizName, questions } = props;
 
-    useEffect(() => {
+    const fetchData = async () => {
+        const res = await axios.get(`${VITE_APP_API_URL}/quiz/${id}`);
+        console.log(res.data.data);
         const data = {
-            quizName: quizName,
-            questions: questions,
+            quizName: res.data.data.title,
+            questions: [...res.data.data.questions],
         };
-        setQuiz({ ...data });
+        console.log(data);
+        setQuiz(data);
+        setState(true);
+    };
+    useEffect(() => {
+        if (Object.keys(props).length !== 0) {
+            console.log(props);
+            const data = {
+                quizName: quizName,
+                questions: [...questions],
+            };
+            console.log(data);
+            setQuiz(data);
+            setState(true);
+        } else {
+            fetchData();
+        }
     }, []);
 
     return (
         <div>
-            <Header title={quiz.quizName} />
-            <QuizContainer quiz={quiz} />
+            {state ? (
+                <>
+                    <Header title={quiz.quizName} />
+                    <QuizContainer quiz={quiz} />
+                </>
+            ) : (
+                ''
+            )}
         </div>
     );
-}
+};
 
 export default TakeQuizPreview;
