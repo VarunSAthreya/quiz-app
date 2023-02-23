@@ -1,65 +1,82 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router';
-import CopiedToast from './CopiedToast';
 import '../styles/admin.css';
+import CopiedToast from './CopiedToast';
 
-const QuizCardComponent = (props) => {
-    const link = `quiz/${props.id}`;
-    const [copySuccess, setCopySuccess] = useState('');
+const QuizCardComponent = ({ quiz }) => {
     const navigate = useNavigate();
-    const [showtoast, setShowToast] = useState(false);
+    const [showToast, setShowToast] = useState(false);
 
     // your function to copy here
-    const navigateToQuiz = () => {
-        navigate(link);
+    const navigateToEditQuiz = () => {
+        navigate(`/edit/${quiz.id}`);
     };
 
-    const copyToClipBoard = async (copyMe) => {
+    const navigateToPreviewQuiz = () => {
+        navigate(`/preview/${quiz.id}`);
+    };
+
+    const navigateToQuizReport = () => {
+        navigate(`/report/${quiz.id}`);
+    };
+
+    const copyToClipBoard = async (id) => {
         try {
-            await navigator.clipboard.writeText(copyMe);
+            await navigator.clipboard.writeText(
+                `${window.location.host}/quiz/${id}`
+            );
             setShowToast(true);
-            setCopySuccess('Copied!');
         } catch (err) {
-            setCopySuccess('Failed to copy!', err);
+            console.log(err.message);
         }
     };
-    let variant = 'primary';
+
     return (
         <div className="quizflexcontainer">
             <div className="quiz-list">
-                <div className="quiz-title">
-                    Name : sgdhjgdhjgsadhgsadsgsfgsfghshfgshg{props.title}
-                </div>
-                <div className="total-taken">
-                    Total taken : 0{props.quizTaken}
-                </div>
-                <div className="avg-score">Average : 0{props.avgScore}</div>
+                <div className="quiz-title">{quiz.title}</div>
                 <div className="copylink">
-                    {showtoast ? (
+                    {showToast && (
                         <CopiedToast
-                            showtoast={showtoast}
+                            showToast={showToast}
                             setShowToast={setShowToast}
                         />
-                    ) : (
-                        ''
                     )}
 
                     <Button
                         variant="outline-light"
                         className="copyquizbutton"
-                        onClick={() => copyToClipBoard(link)}
+                        onClick={() => copyToClipBoard(quiz.id)}
                     >
-                        Copy
+                        Copy Link
                     </Button>
                 </div>
-                <div className="play-quiz-btn-container">
+                <div className="edit-quiz-btn-container">
                     <Button
                         variant="outline-light"
-                        className="play-quiz-btn"
-                        onClick={navigateToQuiz}
+                        className="edit-quiz-btn"
+                        onClick={navigateToEditQuiz}
                     >
-                        Play
+                        Edit Quiz
+                    </Button>
+                </div>
+                <div className="preview-quiz-btn-container">
+                    <Button
+                        variant="outline-light"
+                        className="preview-quiz-btn"
+                        onClick={navigateToPreviewQuiz}
+                    >
+                        Preview Quiz
+                    </Button>
+                </div>
+                <div className="report-quiz-btn-container">
+                    <Button
+                        variant="outline-light"
+                        className="report-quiz-btn"
+                        onClick={navigateToQuizReport}
+                    >
+                        Quiz Report
                     </Button>
                 </div>
             </div>

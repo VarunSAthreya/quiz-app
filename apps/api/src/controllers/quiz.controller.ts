@@ -59,7 +59,7 @@ export const getAllQuiz = async (
             query: { report },
         } = req;
 
-        const quizzes = await Quiz.find({});
+        const quizzes = await Quiz.find().sort({ createdAt: -1 });
         let jsonQuiz: any[] = [];
 
         if (!report || report === 'false') {
@@ -109,6 +109,7 @@ export const getQUiz = async (
     try {
         const {
             params: { id },
+            query: { nofilter },
         } = req;
 
         if (!id) {
@@ -119,6 +120,7 @@ export const getQUiz = async (
         }
 
         const quiz = await Quiz.findById(id);
+        console.log(quiz);
 
         if (!quiz) {
             throw new AppError({
@@ -127,8 +129,71 @@ export const getQUiz = async (
             });
         }
 
+        if (nofilter === 'true') {
+            return res.status(200).send({
+                message: 'Fetched quiz Successfully!',
+                data: quiz.toObject(),
+            });
+        }
+
         res.status(200).json({
             message: 'Fetched quiz Successfully!',
+            data: quiz.toJSON(),
+        });
+    } catch (err: any) {
+        next(
+            new AppError({
+                message: err.message || 'Server error occurred!',
+                statusCode: err.statusCode || 400,
+                stack: err.stack || '',
+            })
+        );
+    }
+};
+
+export const updateQuiz = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const {
+            params: { id },
+            body,
+        } = req;
+
+        if (id !== body.id) {
+            throw new AppError({
+                message: 'Invalid request, the IDs does not match.',
+                statusCode: 401,
+            });
+        }
+        const { questions } = body;
+        if (!questions) {
+            throw new AppError({
+                message: 'Invalid payload.',
+                statusCode: 401,
+            });
+        }
+
+        body.totalPoints = questions.reduce(
+            (accumulator: number, currentObject: any) =>
+                accumulator + Number(currentObject.points),
+            0
+        );
+
+        const quiz = await Quiz.findByIdAndUpdate(id, body);
+        if (!quiz) {
+            throw new AppError({
+                message: "Invalid id, couldn't find quiz of given id.",
+                statusCode: 401,
+            });
+        }
+
+        await quiz.save();
+
+        res.status(200).json({
+            message: 'Updated quiz Successfully!',
             data: quiz.toJSON(),
         });
     } catch (err: any) {
@@ -182,12 +247,16 @@ export const submitQuiz = async (
             });
         }
 
-        const score = calculateScore(quiz, submittedQuiz);
+        const { score, correctQuestions } = calculateScore(quiz, submittedQuiz);
 
         const quizSubmission = new QuizSubmission({
             quizID: quiz._id,
+            quizTitle: quiz.title,
             userID: user._id,
+            username: user.username,
             score: score,
+            correctQuestions,
+            totalScore: quiz.totalPoints,
         });
         await quizSubmission.save();
 
@@ -198,20 +267,23 @@ export const submitQuiz = async (
                 quizID: quiz._id,
                 quizTaken: 1,
                 avgScore: score,
+                sumScore: score,
+                totalScore: quiz.totalPoints,
             });
 
             await quizReport.save();
         } else {
             // Calculate new average score
             const avg =
-                (quizReport.quizTaken * quizReport.avgScore + score) /
-                (quizReport.quizTaken + 1);
+                (quizReport.sumScore + score) / (quizReport.quizTaken + 1);
 
             await QuizReport.findOneAndUpdate(
                 { _id: quizReport._id },
                 {
                     quizTaken: quizReport.quizTaken + 1,
                     avgScore: avg,
+                    sumScore: quizReport.sumScore + score,
+                    totalScore: quiz.totalPoints,
                 }
             );
         }
@@ -219,8 +291,7 @@ export const submitQuiz = async (
         res.status(201).json({
             message: 'Quiz Submitted Successfully!!',
             data: {
-                score,
-                totalPoints: quiz.totalPoints,
+                id: quizSubmission._id,
             },
         });
     } catch (err: any) {

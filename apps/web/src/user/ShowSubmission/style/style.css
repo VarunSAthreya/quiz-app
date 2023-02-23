@@ -1,0 +1,11 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+.submissionContent{
+    text-align: center;
+}
+.submissionContent{
+    font-size: 1.2rem;
+}
+.checked{
+    color: rgb(0, 192, 48);
+    /* color: #b7e5ff; */
+}

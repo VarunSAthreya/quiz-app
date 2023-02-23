@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 
 const CopiedToast = (props) => {
-    const { showtoast, setShowToast } = props;
+    const { showToast, setShowToast } = props;
     return (
         <div
             style={{
@@ -22,7 +21,7 @@ const CopiedToast = (props) => {
                 <Col xs={6}>
                     <Toast
                         onClose={() => setShowToast(false)}
-                        show={showtoast}
+                        show={showToast}
                         delay={2000}
                         autohide
                     >
