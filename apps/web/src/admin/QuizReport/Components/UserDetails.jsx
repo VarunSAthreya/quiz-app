@@ -3,16 +3,16 @@ import React from 'react';
 
 const UserList = ({ submission }) => {
     return (
-        <div className="quizflexcontainer">
-            <div className="user-list">
-                <div className="user-name">{submission.username}</div>
-                <div className="createdAt">
+        <div className="report-quizflexcontainer">
+            <div className="report-user-list">
+                <div className="report-user-name">{submission.username}</div>
+                <div className="report-createdAt">
                     {format(new Date(submission.createdAt), 'dd MMM yyyy')}
                 </div>
-                <div className="user-score">
+                <div className="report-user-score">
                     Correct Ans: {submission.correctQuestions}
                 </div>
-                <div className="total-score">
+                <div className="report-total-score">
                     Score: {submission.score + '/' + submission.totalScore}
                 </div>
             </div>

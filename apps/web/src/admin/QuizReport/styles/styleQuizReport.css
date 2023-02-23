@@ -1,86 +1,71 @@
-.listing-heading h1 {
+.report-listing-heading h1 {
     font-size: 50px;
     margin-top: 20px;
 }
 
-.quizflexcontainer {
+.report-quizflexcontainer {
     background: white;
-    /* margin: 7px 7px;*/
     padding: 6px;
     border-radius: 5px;
     border-radius: 5px;
     color: black;
-    /* width: 500px;*/
 }
 
-.user-list {
+.report-user-list {
     display: flex;
     align-items: center;
     justify-content: space-around;
     border-radius: 5px;
-    /* width: 500px;*/
     height: 9vh;
     border: 1px solid black;
     background-color: rgb(180, 230, 243);
 }
 
-.user-name {
+.report-user-name {
     min-width: 45%;
     font-weight: bold;
 }
 
-.createdAt {
+.report-createdAt {
     min-width: 10%;
     font-weight: bold;
 }
 
-.user-score {
+.report-user-score {
     min-width: 7%;
     font-weight: bold;
 }
 
-.total-score {
+.report-total-score {
     min-width: 6%;
     font-weight: bold;
 }
 
-.listing-quiz {
+.report-listing-quiz {
     min-width: 10vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.listing-heading {
+.report-listing-heading {
     text-align: center;
 }
 
-.quizzes {
+.report-quizzes {
     display: flex;
     flex-direction: column;
     margin-left: 60px;
     margin-right: 60px;
-    /* border: 1px solid black;*/
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /*background-color: #daecf1;*/
-}
-
-.quiz-detailes {
+.report-quiz-detailes {
     background-color: rgb(180, 230, 243);
     margin: 50px 70px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid black;
-    /*color: white;*/
     color: black;
-    /* align-items: center;*/
     text-align: center;
     font-weight: bold;
-
-    /* width: 500px;*/
 }

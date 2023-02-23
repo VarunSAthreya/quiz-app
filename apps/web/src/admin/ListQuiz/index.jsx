@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateQuizButton from './Components/CreateQuizButton';
 import ListQuizContainer from './Components/ListQuizContainer';
-import './styles/admin.css';
+import './styles/adminListStyles.css';
 
 const AdminPageContainer = () => {
     return (
