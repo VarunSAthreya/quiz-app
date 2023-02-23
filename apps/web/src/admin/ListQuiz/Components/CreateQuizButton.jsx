@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { Button } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,7 @@ const CreateQuizButton = () => {
     const navigate = useNavigate();
 
     const clickHandler = () => {
-        navigate('/quiz/create');
+        navigate(`/create/${nanoid()}`);
     };
 
     return (

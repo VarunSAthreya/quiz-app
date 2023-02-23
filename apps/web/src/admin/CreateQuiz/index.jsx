@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import AddQuestionButton from './Components/AddQuestionButton';
 import AdminDetailsModal from './Components/AdminDetailsModal';
 import GenerateQuizButton from './Components/GenerateQuizButton';
@@ -8,6 +9,7 @@ import QuestionContainer from './Components/QuestionContainer';
 import './styles/admin.css';
 
 const CreateQuiz = () => {
+    const { id } = useParams();
     const [quizName, setQuizName] = useState('');
     const [quesDeleteState, setQuesDeleteState] = useState(0);
     const [questions, setQuestions] = useState([]);
@@ -49,6 +51,7 @@ const CreateQuiz = () => {
                 {questions.length > 0 && (
                     <>
                         <GenerateQuizButton
+                            urlId={id}
                             questions={questions}
                             quizName={quizName}
                             adminName={adminName}

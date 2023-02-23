@@ -247,12 +247,16 @@ export const submitQuiz = async (
             });
         }
 
-        const score = calculateScore(quiz, submittedQuiz);
+        const { score, correctQuestions } = calculateScore(quiz, submittedQuiz);
 
         const quizSubmission = new QuizSubmission({
             quizID: quiz._id,
+            quizTitle: quiz.title,
             userID: user._id,
+            username: user.username,
             score: score,
+            correctQuestions,
+            totalScore: quiz.totalPoints,
         });
         await quizSubmission.save();
 
@@ -263,20 +267,23 @@ export const submitQuiz = async (
                 quizID: quiz._id,
                 quizTaken: 1,
                 avgScore: score,
+                sumScore: score,
+                totalScore: quiz.totalPoints,
             });
 
             await quizReport.save();
         } else {
             // Calculate new average score
             const avg =
-                (quizReport.quizTaken * quizReport.avgScore + score) /
-                (quizReport.quizTaken + 1);
+                (quizReport.sumScore + score) / (quizReport.quizTaken + 1);
 
             await QuizReport.findOneAndUpdate(
                 { _id: quizReport._id },
                 {
                     quizTaken: quizReport.quizTaken + 1,
                     avgScore: avg,
+                    sumScore: quizReport.sumScore + score,
+                    totalScore: quiz.totalPoints,
                 }
             );
         }

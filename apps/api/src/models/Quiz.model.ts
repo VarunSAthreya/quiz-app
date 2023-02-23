@@ -9,12 +9,14 @@ const QuizSchema = new mongoose.Schema(
             unique: true,
             min: 5,
             trim: true,
+            max: 32,
         },
         description: {
             type: String,
             required: true,
             min: 5,
             trim: true,
+            max: 100,
         },
         adminID: {
             type: String,
@@ -25,6 +27,12 @@ const QuizSchema = new mongoose.Schema(
             type: Number,
             // * NOTE: REQUIRED NOT TRUE AS WE ARE CALCULATING THE TOTAL POINTS BEFORE SAVING
             // required: true,
+        },
+        urlId: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
         },
     },
     { timestamps: true }
@@ -49,6 +57,8 @@ QuizSchema.set('toJSON', {
     transform(doc, ret, options) {
         delete ret._id;
         delete ret.__v;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });
