@@ -21,7 +21,7 @@ const QuizQuestion = (props) => {
     const renderCheckbox = (question) => {
         return (
             <div className="QnA" key={question.id}>
-                <Card border="success" style={{ width: '35rem' }}>
+                <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
@@ -29,15 +29,15 @@ const QuizQuestion = (props) => {
                 <br />
                 <div className="optionsContainer">
                     <Form>
-                        <div key="inline-checkbox" className="mb-3">
-                            {question.options.map((option) => {
+                        <div key="inline-checkbox" className="mb-3, options">
+                            {question.options.map((option, index) => {
                                 return (
                                     <Form.Check
                                         key={option.id}
                                         label={option.title}
-                                        name="group1"
+                                        name={props.question.id}
                                         type="checkbox"
-                                        id="inline-checkbox-1"
+                                        id="inline-radio-1"
                                         onChange={(e) => {
                                             checkedOption(question, option);
                                         }}
@@ -55,7 +55,7 @@ const QuizQuestion = (props) => {
     const renderRadio = (question) => {
         return (
             <div className="QnA" key={question.id}>
-                <Card border="success" style={{ width: '35rem' }}>
+                <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
@@ -63,7 +63,7 @@ const QuizQuestion = (props) => {
                 <br />
                 <div className="optionsContainer">
                     <Form>
-                        <div key="inline-radio" className="mb-3">
+                        <div key="inline-radio" className="mb-3, options">
                             {question.options.map((option) => {
                                 return (
                                     <Form.Check
