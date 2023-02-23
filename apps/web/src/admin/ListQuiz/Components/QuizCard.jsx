@@ -9,8 +9,16 @@ const QuizCardComponent = ({ quiz }) => {
     const [showToast, setShowToast] = useState(false);
 
     // your function to copy here
-    const navigateToQuiz = () => {
-        navigate(`/quiz/${quiz.id}`);
+    const navigateToEditQuiz = () => {
+        navigate(`/edit/${quiz.id}`);
+    };
+
+    const navigateToPreviewQuiz = () => {
+        navigate(`/preview/${quiz.id}`);
+    };
+
+    const navigateToQuizReport = () => {
+        navigate(`/report/${quiz.id}`);
     };
 
     const copyToClipBoard = async (id) => {
@@ -28,12 +36,6 @@ const QuizCardComponent = ({ quiz }) => {
         <div className="quizflexcontainer">
             <div className="quiz-list">
                 <div className="quiz-title">{quiz.title}</div>
-                <div className="total-taken">
-                    Total taken : {quiz.quizTaken}
-                </div>
-                <div className="avg-score">
-                    Average : {quiz.avgScore} / {quiz.totalPoints}
-                </div>
                 <div className="copylink">
                     {showToast && (
                         <CopiedToast
@@ -47,16 +49,34 @@ const QuizCardComponent = ({ quiz }) => {
                         className="copyquizbutton"
                         onClick={() => copyToClipBoard(quiz.id)}
                     >
-                        Copy
+                        Copy Link
                     </Button>
                 </div>
-                <div className="play-quiz-btn-container">
+                <div className="edit-quiz-btn-container">
                     <Button
                         variant="outline-light"
-                        className="play-quiz-btn"
-                        onClick={navigateToQuiz}
+                        className="edit-quiz-btn"
+                        onClick={navigateToEditQuiz}
                     >
-                        Play
+                        Edit Quiz
+                    </Button>
+                </div>
+                <div className="preview-quiz-btn-container">
+                    <Button
+                        variant="outline-light"
+                        className="preview-quiz-btn"
+                        onClick={navigateToPreviewQuiz}
+                    >
+                        Preview Quiz
+                    </Button>
+                </div>
+                <div className="report-quiz-btn-container">
+                    <Button
+                        variant="outline-light"
+                        className="report-quiz-btn"
+                        onClick={navigateToQuizReport}
+                    >
+                        Quiz Report
                     </Button>
                 </div>
             </div>
