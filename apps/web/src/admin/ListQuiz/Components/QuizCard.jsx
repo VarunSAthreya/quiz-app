@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router';
-import '../styles/admin.css';
 import CopiedToast from './CopiedToast';
 
 const QuizCardComponent = ({ quiz }) => {
@@ -18,7 +17,7 @@ const QuizCardComponent = ({ quiz }) => {
     };
 
     const navigateToQuizReport = () => {
-        navigate(`/report/${quiz.id}`);
+        navigate(`/quiz/report/${quiz.id}`);
     };
 
     const copyToClipBoard = async (id) => {

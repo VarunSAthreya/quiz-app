@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-//`import { VITE_APP_API_URL } from '../../../env';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { VITE_APP_API_URL } from '../../env';
 import Loading from '../../utils/Loading';
@@ -9,11 +8,10 @@ import './styles/style.css';
 
 const QuizReport = () => {
     const { id } = useParams();
-    console.log(id);
 
-    const [report, setReport] = useState({});
+    const [report, setReport] = useState();
     const [submissions, setSubmissions] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -28,11 +26,13 @@ const QuizReport = () => {
                 setReport(rep.data.data);
                 setSubmissions(sub.data.data);
             })
-            .catch((err) => setError(err.message))
+            .catch((err) => {
+                console.log(err);
+                setError(err.response.data.message);
+            })
             .finally(() => setLoading(false));
     }, [id]);
 
-    if (loading) return <Loading message="Fetching data..." />;
     if (error) {
         return (
             <div>
@@ -41,6 +41,7 @@ const QuizReport = () => {
             </div>
         );
     }
+    if (loading || !report) return <Loading message="Fetching data..." />;
 
     return (
         <div>
