@@ -23,7 +23,7 @@ function App() {
                 <Route path="/quiz/:id" element={<TakeQuiz />} />
                 <Route path="/submit/:id" element={<ShowSubmission />} />
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
-                {/* <Route path="/quiz/report/:id" element={<QuizReport />} /> */}
+                {/* <Route path="/report/:id" element={<QuizReport />} /> */}
                 <Route path="/edit/:id" element={<EditQuiz />} />
             </Routes>
         </Router>
