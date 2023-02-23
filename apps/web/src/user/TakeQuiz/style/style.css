@@ -6,7 +6,6 @@
 } */
 :root {
     --background-color: #b7e5ff;
-
 }
 body {
     background-color: white;
@@ -20,7 +19,7 @@ body {
     padding: 1% 0;
     text-align: center;
 }
-.userInfo{
+.userInfo {
     /* width: 50vw; */
     /* border: 1px solid blue; */
     display: flex;
@@ -35,7 +34,7 @@ body {
     margin: 0 auto;
     padding: 5% 3%;
 }
-.userCredentials{
+.userCredentials {
     /* background-color: red; */
     width: 55vw;
     display: flex;
