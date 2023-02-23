@@ -5,9 +5,9 @@ import {
     Route,
     Routes,
 } from 'react-router-dom';
-import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
-import QuizIDSubmission from './admin/QuizSubmission/Components/SubmissionContainer';
 import CreateQuiz from './admin/CreateQuiz';
+import AdminPageContainer from './admin/ListQuiz/Components/Adminpage';
+import QuizIDSubmission from './admin/QuizReport';
 import ShowScore from './user/Components/ShowScore';
 
 function App() {

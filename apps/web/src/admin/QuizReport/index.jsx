@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import UserList from './UserDetails';
+import UserList from './Components/UserDetails';
 //`import { VITE_APP_API_URL } from '../../../env';
 import { useParams } from 'react-router-dom';
 
-const Usersubmissions1 = () => {
+const UserSubmissions = () => {
     // const params = useParams();
     const { id } = useParams();
 
@@ -73,4 +73,4 @@ const Usersubmissions1 = () => {
     );
 };
 
-export default Usersubmissions1;
+export default UserSubmissions;
