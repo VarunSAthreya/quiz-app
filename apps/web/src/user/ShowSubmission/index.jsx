@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
 import { Loading } from '../TakeQuiz/Components/Loading';
+import Submission from './Submission';
+import './style/style.css';
 
 const ShowSubmission = () => {
     const { id } = useParams();
@@ -26,10 +28,18 @@ const ShowSubmission = () => {
 
         getData();
     }, [id]);
-
+    console.log('submission :', submission);
     if (loading) return <Loading message={'Loading...'} />;
 
-    return <div>{submission && <p>{JSON.stringify(submission)}</p>}</div>;
+    return (
+        <div>
+            {submission && (
+                <Submission
+                    score={submission.score}
+                    quizID={submission.quizID}
+                />
+            )}
+        </div>
+    );
 };
-
 export default ShowSubmission;

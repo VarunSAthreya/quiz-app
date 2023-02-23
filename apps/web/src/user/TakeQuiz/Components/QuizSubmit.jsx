@@ -23,8 +23,7 @@ const QuizSubmit = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Your response has been recorded Successfully. Please wait
-                    till we calculate your score.
+                    Please wait till we calculate your score.
                     <hr />
                     {loading === true && (
                         <Loading message={'Submitting Quiz!'} />
