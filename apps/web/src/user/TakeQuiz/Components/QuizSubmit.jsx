@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { Loading } from './Loading';
+import Loading from '../../../utils/Loading';
 const QuizSubmit = (props) => {
     const { lgShow, setLgShow, status, setStatus, score, setScore } = props;
     const [loading, setLoading] = useState(true);

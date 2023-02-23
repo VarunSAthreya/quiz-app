@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
-import { Loading } from '../TakeQuiz/Components/Loading';
-import Submission from './Submission';
+import Loading from '../../utils/Loading';
 import './style/style.css';
+import Submission from './Submission';
 
 const ShowSubmission = () => {
     const { id } = useParams();

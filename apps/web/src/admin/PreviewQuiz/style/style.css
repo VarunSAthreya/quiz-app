@@ -28,7 +28,7 @@ body {
 .quizContainer {
     background-color: #d8dfe2;
     /* background-color: var(--background-color); */
-    box-shadow: 1px 1px 5px 1px #022437 ;
+    box-shadow: 1px 1px 5px 1px #022437;
     width: 50vw;
     /* height: 80vh; */
     text-align: center;
@@ -52,7 +52,7 @@ body {
     text-align: left;
     font-size: 1.2rem;
 }
-.questionContainer{
+.questionContainer {
     box-shadow: 1px 1px 4px 1px #022437;
 }
 .optionsContainer {
@@ -63,19 +63,19 @@ body {
     /* background-color: #ecc250; */
     padding: 2%;
 }
-.options{
+.options {
     display: grid;
-    grid-template-columns: auto auto ;
+    grid-template-columns: auto auto;
     /* column-gap:10%; */
     row-gap: 10px;
     align-items: start;
     text-align: left;
 }
-.optionRow1{
+.optionRow1 {
     margin-left: 30%;
     text-align: start;
 }
-.optionRow2{
+.optionRow2 {
     text-align: start;
 }
 .navigateButtons {

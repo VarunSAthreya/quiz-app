@@ -9,9 +9,10 @@ import {
 import CreateQuiz from './admin/CreateQuiz';
 import EditQuiz from './admin/EditQuiz';
 import AdminPageContainer from './admin/ListQuiz';
+import TakeQuizPreview from './admin/PreviewQuiz';
+import QuizReport from './admin/QuizReport';
 import ShowSubmission from './user/ShowSubmission';
 import TakeQuiz from './user/TakeQuiz';
-import TakeQuizPreview from './admin/PreviewQuiz';
 
 function App() {
     // ! TODO: IMPORT THE REQUIRED COMPONENT AND REPLACE HERE
@@ -25,7 +26,8 @@ function App() {
                 <Route path="/submit/:id" element={<ShowSubmission />} />
                 <Route path="/preview/:id" element={<TakeQuizPreview />} />
                 {/* <Route path="/quiz/report" element={<AllQuizReport />} /> */}
-                {/* <Route path="/report/:id" element={<QuizReport />} /> */}
+                <Route path="/quiz/report/:id" element={<QuizReport />} />
+                {/* <Route path="/submit/quiz/:id" element={<QuizIDSubmission />} /> */}
                 <Route path="/edit/:id" element={<EditQuiz />} />
             </Routes>
         </Router>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Loading } from '../TakeQuiz/Components/Loading';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { VITE_APP_API_URL } from '../../env';
+import Loading from '../../utils/Loading';
 import Stars from './Stars';
 
 const Submission = (props) => {

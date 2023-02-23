@@ -35,11 +35,7 @@ const ListQuizContainer = () => {
 
             <div className="quizzes">
                 {quizzes.map((quiz) => (
-                    <QuizCardComponent
-                        key={quiz.id}
-                        className="quiz-listcomponent"
-                        quiz={quiz}
-                    />
+                    <QuizCardComponent key={quiz.id} quiz={quiz} />
                 ))}
             </div>
         </div>

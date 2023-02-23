@@ -1,9 +1,3 @@
-/* #root {
-    width: 55vw;
-    margin: 0 auto;
-    text-align: center;
-    border: 1px solid red;
-} */
 :root {
     --background-color: #b7e5ff;
 }
@@ -20,23 +14,18 @@ body {
     text-align: center;
 }
 .userInfo {
-    /* width: 50vw; */
-    /* border: 1px solid blue; */
     display: flex;
     justify-content: center;
 }
 .quizContainer {
     background-color: #d8dfe2;
-    /* background-color: var(--background-color); */
-    box-shadow: 1px 1px 5px 1px #022437 ;
+    box-shadow: 1px 1px 5px 1px #022437;
     width: 50vw;
-    /* height: 80vh; */
     text-align: center;
     margin: 0 auto;
     padding: 5% 3%;
 }
 .userCredentials {
-    /* background-color: red; */
     width: 55vw;
     display: flex;
     justify-content: center;
@@ -44,7 +33,6 @@ body {
     margin: 2% 0;
 }
 #question {
-    /* background-color: red; */
     color: black;
     min-height: 10vh;
     margin: 2% auto;
@@ -52,30 +40,25 @@ body {
     text-align: left;
     font-size: 1.2rem;
 }
-.questionContainer{
+.questionContainer {
     box-shadow: 1px 1px 4px 1px #022437;
 }
 .optionsContainer {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
     align-items: start;
-    /* background-color: #ecc250; */
     padding: 2%;
 }
-.options{
+.options {
     display: grid;
-    grid-template-columns: auto auto ;
-    /* column-gap:10%; */
+    grid-template-columns: auto auto;
     row-gap: 10px;
     align-items: start;
     text-align: left;
 }
-.optionRow1{
+.optionRow1 {
     margin-left: 30%;
     text-align: start;
 }
-.optionRow2{
+.optionRow2 {
     text-align: start;
 }
 .navigateButtons {
