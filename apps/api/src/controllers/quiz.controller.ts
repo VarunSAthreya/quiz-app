@@ -59,7 +59,7 @@ export const getAllQuiz = async (
             query: { report },
         } = req;
 
-        const quizzes = await Quiz.find({});
+        const quizzes = await Quiz.find().sort({ createdAt: -1 });
         let jsonQuiz: any[] = [];
 
         if (!report || report === 'false') {

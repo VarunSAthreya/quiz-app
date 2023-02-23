@@ -8,7 +8,7 @@ export const getReports = async (
     next: NextFunction
 ) => {
     try {
-        const reports = await QuizReport.find();
+        const reports = await QuizReport.find().sort({ createdAt: -1 });
         const jsonReports = reports.map((report) => report.toJSON());
 
         res.status(200).json({
