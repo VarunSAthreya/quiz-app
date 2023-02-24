@@ -1,9 +1,4 @@
-/* #root {
-    width: 55vw;
-    margin: 0 auto;
-    text-align: center;
-    border: 1px solid red;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,100;1,400&family=Open+Sans:wght@300;400;600&family=Quicksand:wght@700&display=swap');
 :root {
     --background-color: #b7e5ff;
 }
@@ -18,6 +13,8 @@ body {
     margin: 0;
     padding: 1% 0;
     text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
 }
 .userInfo {
     /* width: 50vw; */
@@ -47,7 +44,7 @@ body {
     /* background-color: red; */
     color: black;
     min-height: 10vh;
-    margin: 2% auto;
+    margin: 2% ;
     padding: 0;
     text-align: left;
     font-size: 1.2rem;

@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 
 const QuizQuestion = (props) => {
     const { questions, ind } = props;
-    console.log(questions);
+    // console.log(questions);
     const checkedOption = (question, option) => {
         if (question.isMultiple) {
             if (option.isSelected) {
@@ -19,15 +19,17 @@ const QuizQuestion = (props) => {
         }
     };
 
-    const renderCheckbox = (question) => {
+    const renderCheckbox = (question, index) => {
         return (
             <div key={question.id} className="QnA">
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
                 <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-checkbox" className="mb-3, options">
@@ -53,15 +55,17 @@ const QuizQuestion = (props) => {
         );
     };
 
-    const renderRadio = (question) => {
+    const renderRadio = (question, index) => {
         return (
             <div key={question.id} className="QnA">
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
                 <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-radio" className="mb-3, options">
@@ -87,12 +91,12 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return questions.map((question) => {
+    return questions.map((question, index) => {
         return (
             <div key={question.id}>
                 {question.isMultiple
-                    ? renderCheckbox(question)
-                    : renderRadio(question)}
+                    ? renderCheckbox(question, index)
+                    : renderRadio(question, index)}
             </div>
         );
     });

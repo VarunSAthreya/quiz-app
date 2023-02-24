@@ -10,7 +10,7 @@ const QuizContainer = (props) => {
     const [index, setIndex] = useState(0);
     const questions = props.quiz.questions;
     const getCurrentQuestion = () => {
-        console.log(questions);
+        // console.log(questions);
         return questions[index];
     };
 

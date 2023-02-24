@@ -15,12 +15,12 @@ const TakeQuizPreview = (props) => {
 
     const fetchData = async () => {
         const res = await axios.get(`${VITE_APP_API_URL}/quiz/${id}`);
-        console.log(res.data.data);
+        // console.log(res.data.data);
         const data = {
             quizName: res.data.data.title,
             questions: [...res.data.data.questions],
         };
-        console.log(data);
+        // console.log(data);
         setQuiz(data);
         setState(true);
     };
