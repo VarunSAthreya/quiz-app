@@ -4,13 +4,15 @@ const Stars = (props) => {
     for (let index = 0; index < totalPoints; index++) {
         stars.push(index);
     }
-    // console.log(stars);   --------2baar console pe kyun?
-    return stars.map((star) => {
-        // return <i className="fa fa-star"></i>;
+
+    return stars.map((star, i) => {
         return star < score ? (
-            <span className="fa fa-star checked , stars" key={star}></span>
+            <span
+                key={'star-' + i}
+                className="fa fa-star checked , stars"
+            ></span>
         ) : (
-            <span className="fa fa-star , stars" key={star}></span>
+            <span key={'star-' + i} className="fa fa-star , stars"></span>
         );
     });
 };
