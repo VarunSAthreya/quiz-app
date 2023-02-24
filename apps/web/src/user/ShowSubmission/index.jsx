@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
 import Loading from '../../utils/Loading';
+import Stars from './Stars';
 import './style/style.css';
-import Submission from './Submission';
 
 const ShowSubmission = () => {
     const { id } = useParams();
@@ -19,6 +19,7 @@ const ShowSubmission = () => {
                     `${VITE_APP_API_URL}/submit/${id}`
                 );
                 setSubmission(submit.data.data);
+                console.log('submission :', submission);
             } catch (e) {
                 console.error(e);
             } finally {
@@ -28,17 +29,30 @@ const ShowSubmission = () => {
 
         getData();
     }, [id]);
-    console.log('submission :', submission);
+
     if (loading) return <Loading message={'Loading...'} />;
 
     return (
-        <div>
-            {submission && (
-                <Submission
+        <div className="submissionContainer">
+            <h1 className="quizTitle">{submission.quizTitle}</h1>
+            <br />
+            <br />
+            <br />
+            <div className="submissionContent">
+                <h1>Your response has been recorded</h1>
+                <br />
+                <br />
+                <br />
+                <p>Your Score</p>
+                <p>
+                    {submission.score}/{submission.totalScore}
+                </p>
+
+                <Stars
                     score={submission.score}
-                    quizID={submission.quizID}
+                    totalPoints={submission.totalScore}
                 />
-            )}
+            </div>
         </div>
     );
 };
