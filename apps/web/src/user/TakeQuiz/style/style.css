@@ -1,3 +1,4 @@
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,100;1,400&family=Open+Sans:wght@300;400;600&family=Quicksand:wght@700&display=swap');
 /* #root {
     width: 55vw;
     margin: 0 auto;
@@ -12,17 +13,27 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+.main-header{
+    background-color: var(--background-color);
+}
+.totalPoints{
+    text-align: left;
+    margin: 0 0 1% 1% ;
 }
 .quizTitle {
     color: black;
-    background-color: var(--background-color);
     margin: 0;
     padding: 1% 0;
     text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
 }
 .userInfo{
     /* width: 50vw; */
     /* border: 1px solid blue; */
+    /* background-color: red; */
     display: flex;
     justify-content: center;
 }
@@ -34,27 +45,41 @@ body {
     /* height: 80vh; */
     text-align: center;
     margin: 0 auto;
-    padding: 5% 3%;
+    padding: 2% 3%;
 }
 .userCredentials{
-    /* background-color: red; */
-    width: 55vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2% 0;
 }
+.quizDescription{
+    text-align: left;
+}
+.que{
+    text-align:left;
+    font-size: 0.8rem;
+    margin: 0 0 1% 0;
+    /* border: 1px solid red; */
+}
+.question{
+    padding: 0;
+}
 #question {
-    /* background-color: red; */
     color: black;
-    min-height: 10vh;
-    margin: 2% auto;
+    min-height: 15vh;
+    margin: 2% ;
     padding: 0;
     text-align: left;
     font-size: 1.2rem;
 }
 .questionContainer{
     box-shadow: 1px 1px 4px 1px #022437;
+}
+.questionPoints{
+    text-align: right;
+    margin: 3% 0;
 }
 .optionsContainer {
     /* display: flex; */

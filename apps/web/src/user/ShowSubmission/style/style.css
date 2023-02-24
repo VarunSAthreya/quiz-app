@@ -1,4 +1,11 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+:root {
+    --background-color: #b7e5ff;
+
+}
+.quizTitle{
+    background-color: var(--background-color);
+}
 .submissionContent{
     text-align: center;
 }
@@ -8,4 +15,12 @@
 .checked{
     color: rgb(0, 192, 48);
     /* color: #b7e5ff; */
+}
+.tick{
+    color: green;
+    width: 4rem;
+    height: 4rem;
+}
+.stars{
+    margin: 0 0.4%;
 }

@@ -3,13 +3,14 @@ import { Loading } from '../TakeQuiz/Components/Loading';
 import axios from 'axios';
 import { VITE_APP_API_URL } from '../../env';
 import Stars from './Stars';
+import { TiTick } from 'react-icons/ti';
+import { FaRegCheckCircle } from 'react-icons/fa';
 
 const Submission = (props) => {
-    const { score, quizID } = props;
+    const { score, quizID, submission } = props;
     const [quiz, setQuiz] = useState({});
     let arr = [];
     const [loading, setLoading] = useState(false);
-    const imgPath = './assets/gt.png';
     useEffect(() => {
         async function getQuiz() {
             try {
@@ -35,17 +36,17 @@ const Submission = (props) => {
             <br />
             <br />
             <div className="submissionContent">
+                <FaRegCheckCircle className="tick" />
+                <br />
+                <br />
                 <h1>Your response has been recorded</h1>
-                <br />
-                <br />
                 <br />
                 <p>Your Score</p>
                 <p>
                     {score}/{quiz.totalPoints}
                 </p>
-                {/* <i className="fa fa-star"></i>
-                <span className="fa fa-star checked"></span> */}
                 <Stars score={score} totalPoints={quiz.totalPoints} />
+                <br />
             </div>
         </div>
     );
