@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
@@ -21,7 +22,6 @@ const ShowSubmission = () => {
                     `${VITE_APP_API_URL}/submit/${id}`
                 );
                 setSubmission(submit.data.data);
-                console.log('submission :', submission);
             } catch (e) {
                 console.error(e);
             } finally {
@@ -33,7 +33,8 @@ const ShowSubmission = () => {
     }, [id]);
 
     if (loading) return <Loading message={'Loading...'} />;
-
+    console.log('submission :', submission);
+    const now = (submission.score / submission.totalScore) * 100;
     return (
         <div className="submissionContainer">
             <h1 className="quizTitle">{submission.quizTitle}</h1>
@@ -50,11 +51,16 @@ const ShowSubmission = () => {
                 <p>
                     {submission.score}/{submission.totalScore}
                 </p>
-
-                <Stars
+                {/* <Stars
                     score={submission.score}
                     totalPoints={submission.totalScore}
-                />
+                /> */}
+                <br />
+                <div className="progressBar">
+                    <ProgressBar className="bar" now={now} label={`${now}%`} />
+                </div>
+                <br />
+                <p>No of correct Questions: {submission.correctQuestions}</p>
             </div>
         </div>
     );
