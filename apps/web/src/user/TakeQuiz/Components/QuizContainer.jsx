@@ -1,15 +1,11 @@
-import axios from 'axios';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { useNavigate } from 'react-router';
-import { VITE_APP_API_URL } from '../../../env';
-import QuizQuestion from './QuizQuestion';
-// import QuizSubmit from './QuizSubmit';
-import UnSuccessfulModal from './UnsuccessfulModal';
 import ConfirmModal from './ConfirmModal';
+import QuizQuestion from './QuizQuestion';
+import UnSuccessfulModal from './UnsuccessfulModal';
 
 const QuizContainer = ({ quiz }) => {
     const [index, setIndex] = useState(0);
@@ -20,8 +16,6 @@ const QuizContainer = ({ quiz }) => {
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [confirmShow, setConfirmShow] = useState(false);
-
-    const navigate = useNavigate();
 
     const changeUsername = (e) => {
         setUserName(e.target.value);
@@ -44,28 +38,6 @@ const QuizContainer = ({ quiz }) => {
     const confirmSubmit = () => {
         setConfirmShow(true);
     };
-    // const submitQuiz = () => {
-    //     const payload = {
-    //         quiz,
-    //         username,
-    //         email,
-    //     };
-    //     console.log('payload is', payload);
-    //     axios
-    //         .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
-    //         .then((data) => {
-    //             console.log('Submission Successful');
-    //             console.log(data.data.data.id);
-    //             setStatus(true);
-    //             navigate(`/submit/${data.data.data.id}`);
-    //         })
-    //         .catch((err) => {
-    //             console.log('Submission Unsuccessful', err);
-    //             // setLgShow(false);
-    //             setStatus(false);
-    //             setErrorMessage(err.message);
-    //         });
-    // };
 
     return (
         <>
@@ -91,16 +63,7 @@ const QuizContainer = ({ quiz }) => {
                     setErrorMessage={setErrorMessage}
                 />
             )}
-            {/* {lgShow && (
-                <QuizSubmit
-                    lgShow={lgShow}
-                    setLgShow={setLgShow}
-                    status={status}
-                    setStatus={setStatus}
-                    score={score}
-                    setScore={setScore}
-                />
-            )} */}
+
             <div className="userInfo">
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3, userCredentials">
@@ -109,7 +72,6 @@ const QuizContainer = ({ quiz }) => {
                             md="4"
                             controlId="validationCustom01"
                         >
-                            {/* <Form.Label>User name</Form.Label> */}
                             <Form.Control
                                 required
                                 type="text"
