@@ -48,7 +48,7 @@ body {
     padding: 2% 3%;
 }
 .userCredentials{
-    width: 100vw;
+    width:100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,4 +111,16 @@ body {
 }
 .submitButton {
     width: 40%;
+}
+.progressBar{
+    display: flex;
+    justify-content: center;
+}
+.bar{
+    width: 50%;
+    min-height: 25px;
+    /* border: 1px solid red; */
+}
+.progress-bar{
+    background-color: rgb(12, 147, 12);
 }

@@ -21,7 +21,6 @@ const UnSuccessfulModal = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     Quiz submission unsuccessful ! <br />
-                    Please ensure you have entered username & email.
                     <br />
                     <br />
                     {message}

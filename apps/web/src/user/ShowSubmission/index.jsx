@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useParams } from 'react-router';
 import { VITE_APP_API_URL } from '../../env';
 import Loading from '../../utils/Loading';
-import Stars from './Stars';
 import './style/style.css';
 
 import { FaRegCheckCircle } from 'react-icons/fa';
@@ -21,7 +21,6 @@ const ShowSubmission = () => {
                     `${VITE_APP_API_URL}/submit/${id}`
                 );
                 setSubmission(submit.data.data);
-                console.log('submission :', submission);
             } catch (e) {
                 console.error(e);
             } finally {
@@ -33,7 +32,9 @@ const ShowSubmission = () => {
     }, [id]);
 
     if (loading) return <Loading message={'Loading...'} />;
-
+    console.log('submission :', submission);
+    let num = (submission.score / submission.totalScore) * 100;
+    num = Math.round(num * 100) / 100;
     return (
         <div className="submissionContainer">
             <h1 className="quizTitle">{submission.quizTitle}</h1>
@@ -50,11 +51,15 @@ const ShowSubmission = () => {
                 <p>
                     {submission.score}/{submission.totalScore}
                 </p>
-
-                <Stars
-                    score={submission.score}
-                    totalPoints={submission.totalScore}
-                />
+                <br />
+                <div className="progressBar">
+                    <ProgressBar className="bar" now={num} label={`${num}%`} />
+                </div>
+                <br />
+                <p>
+                    No of correct Questions: {submission.correctQuestions} /{' '}
+                    {submission.totalQuestions}
+                </p>
             </div>
         </div>
     );
