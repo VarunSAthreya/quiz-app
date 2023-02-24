@@ -36,7 +36,7 @@ export const createQuiz = async (
 
         res.status(201).json({
             message: 'Quiz Created Successfully!',
-            data: savedQuiz.toJSON(),
+            data: savedQuiz,
         });
     } catch (err: any) {
         next(
@@ -101,7 +101,7 @@ export const getAllQuiz = async (
     }
 };
 
-export const getQUiz = async (
+export const getQuiz = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -137,7 +137,7 @@ export const getQUiz = async (
 
         res.status(200).json({
             message: 'Fetched quiz Successfully!',
-            data: quiz.toJSON(),
+            data: quiz,
         });
     } catch (err: any) {
         next(
