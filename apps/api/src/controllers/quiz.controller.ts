@@ -12,6 +12,7 @@ export const createQuiz = async (
         const { body } = req;
         const { username, email } = body;
 
+        console.log(body);
         // Check if there is user details
         if (!username || !email) {
             throw new AppError({
