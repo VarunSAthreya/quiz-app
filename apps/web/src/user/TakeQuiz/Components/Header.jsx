@@ -1,7 +1,10 @@
-const Header = ({ title }) => {
+const Header = (props) => {
+    const { title, totalPoints } = props;
     return (
-        <header className="main-header quizTitle">
-            <h1>{title}</h1>
+        <header className="main-header ">
+            <h1 className="quizTitle">{title.toUpperCase()} </h1>
+            {/* <br /> */}
+            <p className="totalPoints">Total Marks:{totalPoints}</p>
         </header>
     );
 };

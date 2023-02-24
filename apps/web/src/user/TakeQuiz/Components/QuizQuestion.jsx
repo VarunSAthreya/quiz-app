@@ -18,15 +18,17 @@ const QuizQuestion = (props) => {
         }
     };
 
-    const renderCheckbox = (question) => {
+    const renderCheckbox = (question, index) => {
         return (
             <div className="QnA" key={question.id}>
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
-                    <Card.Body>
+                    {/* <Card.Title> hehe</Card.Title> */}
+                    <Card.Body className="question">
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
-                <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-checkbox" className="mb-3, options">
@@ -52,15 +54,16 @@ const QuizQuestion = (props) => {
         );
     };
 
-    const renderRadio = (question) => {
+    const renderRadio = (question, index) => {
         return (
             <div className="QnA" key={question.id}>
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
-                    <Card.Body>
+                    <Card.Body className="question">
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
-                <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-radio" className="mb-3, options">
@@ -86,10 +89,19 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return quiz.questions.map((question) => {
-        return question.isMultiple
-            ? renderCheckbox(question)
-            : renderRadio(question);
-    });
+    return (
+        <>
+            <p className="quizDescription">
+                <b> Quiz Description : </b>
+                {quiz.description}
+            </p>
+            <hr />
+            {quiz.questions.map((question, index) => {
+                return question.isMultiple
+                    ? renderCheckbox(question, index)
+                    : renderRadio(question, index);
+            })}
+        </>
+    );
 };
 export default QuizQuestion;

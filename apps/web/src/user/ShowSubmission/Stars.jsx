@@ -7,9 +7,12 @@ const Stars = (props) => {
 
     return stars.map((star, i) => {
         return star < score ? (
-            <span key={'star-' + i} className="fa fa-star checked"></span>
+            <span
+                key={'star-' + i}
+                className="fa fa-star checked , stars"
+            ></span>
         ) : (
-            <span key={'star-' + i} className="fa fa-star"></span>
+            <span key={'star-' + i} className="fa fa-star , stars"></span>
         );
     });
 };

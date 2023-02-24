@@ -6,6 +6,8 @@ import Loading from '../../utils/Loading';
 import Stars from './Stars';
 import './style/style.css';
 
+import { FaRegCheckCircle } from 'react-icons/fa';
+
 const ShowSubmission = () => {
     const { id } = useParams();
     const [submission, setSubmission] = useState({});
@@ -39,9 +41,10 @@ const ShowSubmission = () => {
             <br />
             <br />
             <div className="submissionContent">
+                <FaRegCheckCircle className="tick" />
+                <br />
+                <br />
                 <h1>Your response has been recorded</h1>
-                <br />
-                <br />
                 <br />
                 <p>Your Score</p>
                 <p>
