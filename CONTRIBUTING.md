@@ -56,26 +56,28 @@ npm run format
 npm run clean
 ```
 
+-   Add dummy data to the DB
+
+```sh
+npm run import:db -w api
+```
+
+**Note: To add dummy data start the database and server before running the command**
+
 ### Docker
 
--   For development purpose (MongoDB only)
+1. For development purpose (MongoDB only)
+    - This starts only the `mongo` service(`MongoDB` instance).
+    - Can use `-d` flag for it to be `detached` from terminal.
 
 ```sh
 docker-compose up
 ```
 
-**NOTE:**
-
--   This starts only the `mongo` service(`MongoDB` instance).
--   Can use `-d` flag for it to be `detached` from terminal.
-
--   For production build
+2.  For production build
+    -   This starts all the services: `api`, `web`, `mongo`
+    -   Can use `-d` flag for it to be `detached` from terminal.
 
 ```sh
-docker-compose -f docker-compose.yml -f docker-compose.production.yml up
+docker-compose -f docker-compose.production.yml up
 ```
-
-**NOTE:**
-
--   This starts all the services: `api`, `web`, `mongo`
--   Can use `-d` flag for it to be `detached` from terminal.

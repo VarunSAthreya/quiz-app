@@ -1,17 +1,17 @@
 import React from 'react';
-import CreatequizButton from './CreateQuizButton';
-import Quizcardcontaier from './Quizcardcontainer';
-import '../styles/admin.css';
+import CreateQuizButton from './Components/CreateQuizButton';
+import ListQuizContainer from './Components/ListQuizContainer';
+import './styles/adminListStyles.css';
 
 const AdminPageContainer = () => {
     return (
         <div className="adminpage-container">
             <div className="create-btn-class">
-                <CreatequizButton />
+                <CreateQuizButton />
             </div>
 
             <div className="listing-quiz-app">
-                <Quizcardcontaier />
+                <ListQuizContainer />
             </div>
         </div>
     );

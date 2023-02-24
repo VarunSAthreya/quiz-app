@@ -1,7 +1,9 @@
 import AppError from './AppError';
 
 export default function calculateScore(quiz: any, submittedQuiz: any) {
-    let score = 0;
+    let score = 0,
+        correctQuestions = 0;
+
     for (let i = 0; i < quiz.questions.length; i++) {
         let currentQuestion = quiz.questions[i];
         let submittedQuestion = submittedQuiz.questions[i];
@@ -22,8 +24,8 @@ export default function calculateScore(quiz: any, submittedQuiz: any) {
             }
         }
 
-        for (let j = 0; j < currentQuestion.options.length; j++) {
-            let currentOption = currentQuestion.options[j];
+        for (const element of currentQuestion.options) {
+            let currentOption = element;
             let submittedOption = submittedQuestion.options[i];
 
             if (currentOption._id.toString() !== submittedOption.id) {
@@ -45,8 +47,11 @@ export default function calculateScore(quiz: any, submittedQuiz: any) {
                 break;
             }
         }
-        if (flag) score += currentQuestion.points;
+        if (flag) {
+            score += currentQuestion.points;
+            correctQuestions++;
+        }
     }
 
-    return score;
+    return { score, correctQuestions };
 }

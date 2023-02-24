@@ -5,10 +5,11 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "clean": "rm -rf dist",
-        "dev": "nodemon --exec \"node -r esbuild-register ./src/index.ts\" -e .*",
+        "clean": "rm -rf dist && rm -rf node_modules",
+        "dev": "node --watch -r esbuild-register ./src/index.ts",
         "lint": "tsc --noEmit && TIMING=1 eslint src/**/*.ts* --fix",
-        "start": "node -r esbuild-register ./src/index.ts"
+        "start": "node -r esbuild-register ./src/index.ts",
+        "import:db": "node -r esbuild-register ./data/index.ts"
     },
     "keywords": [],
     "author": "",
@@ -30,7 +31,6 @@
         "@types/node": "^18.13.0",
         "esbuild": "^0.17.8",
         "esbuild-register": "^3.4.2",
-        "nodemon": "^2.0.20",
         "typescript": "^4.9.5"
     }
 }

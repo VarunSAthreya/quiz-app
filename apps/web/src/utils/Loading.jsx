@@ -1,7 +1,7 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
-export const Loading = ({ message }) => {
+const Loading = ({ message }) => {
     return (
         <>
             <Spinner animation="grow" />
@@ -9,3 +9,4 @@ export const Loading = ({ message }) => {
         </>
     );
 };
+export default Loading;

@@ -15,6 +15,14 @@ const QuizReportSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        sumScore: {
+            type: Number,
+            required: true,
+        },
+        totalScore: {
+            type: Number,
+            required: true,
+        },
     },
     { timestamps: true }
 );
@@ -28,6 +36,17 @@ QuizReportSchema.set('toJSON', {
     transform(doc, ret, options) {
         delete ret._id;
         delete ret.__v;
+        delete ret.updatedAt;
+        return ret;
+    },
+});
+
+QuizReportSchema.set('toObject', {
+    virtuals: true,
+    transform(doc, ret, options) {
+        delete ret._id;
+        delete ret.__v;
+        delete ret.updatedAt;
         return ret;
     },
 });
