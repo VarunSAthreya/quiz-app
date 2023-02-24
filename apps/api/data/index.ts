@@ -42,6 +42,7 @@ const addSubAndReport = async () => {
             score: e.totalPoints / 2,
             totalScore: e.totalPoints,
             correctQuestions: e.questions.length / 2,
+            totalQuestions: e.questions.length,
         });
 
         await s1.save();
@@ -54,6 +55,7 @@ const addSubAndReport = async () => {
             score: e.totalPoints - 2,
             totalScore: e.totalPoints,
             correctQuestions: e.questions.length - 2,
+            totalQuestions: e.questions.length,
         });
         await s2.save();
 
@@ -65,6 +67,7 @@ const addSubAndReport = async () => {
             score: e.totalPoints,
             totalScore: e.totalPoints,
             correctQuestions: e.questions.length,
+            totalQuestions: e.questions.length,
         });
 
         await s3.save();

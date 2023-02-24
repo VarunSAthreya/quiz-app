@@ -255,6 +255,7 @@ export const submitQuiz = async (
             score: score,
             correctQuestions,
             totalScore: quiz.totalPoints,
+            totalQuestions: quiz.questions.length,
         });
         await quizSubmission.save();
 
