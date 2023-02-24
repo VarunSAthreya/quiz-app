@@ -37,7 +37,7 @@ const QuizQuestion = (props) => {
                                         label={option.title}
                                         name={props.question.id}
                                         type="checkbox"
-                                        id="inline-radio-1"
+                                        id={'inline-checkbox-' + option.id}
                                         onChange={(e) => {
                                             checkedOption(question, option);
                                         }}
@@ -71,7 +71,7 @@ const QuizQuestion = (props) => {
                                         label={option.title}
                                         name={props.question.id}
                                         type="radio"
-                                        id="inline-radio-1"
+                                        id={'inline-radio-' + option.id}
                                         onChange={(e) => {
                                             checkedOption(question, option);
                                         }}
