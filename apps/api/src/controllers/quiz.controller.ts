@@ -12,7 +12,6 @@ export const createQuiz = async (
         const { body } = req;
         const { username, email } = body;
 
-        console.log(body);
         // Check if there is user details
         if (!username || !email) {
             throw new AppError({
@@ -121,7 +120,6 @@ export const getQUiz = async (
         }
 
         const quiz = await Quiz.findById(id);
-        console.log(quiz);
 
         if (!quiz) {
             throw new AppError({
@@ -247,7 +245,6 @@ export const submitQuiz = async (
                 statusCode: 401,
             });
         }
-
         const { score, correctQuestions } = calculateScore(quiz, submittedQuiz);
 
         const quizSubmission = new QuizSubmission({
