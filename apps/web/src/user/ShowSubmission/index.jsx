@@ -28,13 +28,14 @@ const ShowSubmission = () => {
 
         getData();
     }, [id]);
-    console.log('submission :', submission);
+    // console.log('submission :', submission);
     if (loading) return <Loading message={'Loading...'} />;
 
     return (
         <div>
             {submission && (
                 <Submission
+                    submission={submission}
                     score={submission.score}
                     quizID={submission.quizID}
                 />

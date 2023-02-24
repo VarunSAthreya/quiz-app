@@ -8,9 +8,9 @@ const Stars = (props) => {
     return stars.map((star) => {
         // return <i className="fa fa-star"></i>;
         return star < score ? (
-            <span className="fa fa-star checked"></span>
+            <span className="fa fa-star checked , stars" key={star}></span>
         ) : (
-            <span className="fa fa-star"></span>
+            <span className="fa fa-star , stars" key={star}></span>
         );
     });
 };

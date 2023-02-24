@@ -31,7 +31,7 @@ function TakeQuiz() {
 
     return (
         <div>
-            <Header title={quiz.title} />
+            <Header title={quiz.title} totalPoints={quiz.totalPoints} />
             <QuizContainer quiz={quiz} />
         </div>
     );
