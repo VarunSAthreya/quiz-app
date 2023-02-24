@@ -2,8 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
 const QuizQuestion = (props) => {
-    const { questions, ind } = props;
-    // console.log(questions);
+    const { quiz } = props;
     const checkedOption = (question, option) => {
         if (question.isMultiple) {
             if (option.isSelected) {
@@ -91,14 +90,19 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return questions.map((question, index) => {
-        return (
-            <div key={question.id}>
-                {question.isMultiple
+    return (
+        <>
+            <p className="quizDescription">
+                <b> Quiz Description : </b>
+                {quiz.description}
+            </p>
+            <hr />
+            {quiz.questions.map((question, index) => {
+                return question.isMultiple
                     ? renderCheckbox(question, index)
-                    : renderRadio(question, index)}
-            </div>
-        );
-    });
+                    : renderRadio(question, index);
+            })}
+        </>
+    );
 };
 export default QuizQuestion;

@@ -11,28 +11,22 @@ const TakeQuizPreview = (props) => {
     const [quiz, setQuiz] = useState({});
     const [state, setState] = useState(null);
 
-    const { quizName, questions } = props;
+    const { quizData } = props;
 
     const fetchData = async () => {
         const res = await axios.get(`${VITE_APP_API_URL}/quiz/${id}`);
         // console.log(res.data.data);
-        const data = {
-            quizName: res.data.data.title,
-            questions: [...res.data.data.questions],
-        };
+        // const data = {
+        //     quizName: res.data.data.title,
+        //     questions: [...res.data.data.questions],
+        // };
         // console.log(data);
-        setQuiz(data);
+        setQuiz(res.data.data);
         setState(true);
     };
     useEffect(() => {
         if (Object.keys(props).length !== 0) {
-            console.log(props);
-            const data = {
-                quizName: quizName,
-                questions: [...questions],
-            };
-            console.log(data);
-            setQuiz(data);
+            setQuiz(quizData);
             setState(true);
         } else {
             fetchData();
@@ -43,7 +37,7 @@ const TakeQuizPreview = (props) => {
         <div>
             {state ? (
                 <>
-                    <Header title={quiz.quizName} />
+                    <Header quiz={quiz} />
                     <QuizContainer quiz={quiz} />
                 </>
             ) : (

@@ -22,8 +22,6 @@ const EditQuiz = () => {
             `${VITE_APP_API_URL}/quiz/${id}?nofilter=true`
         );
 
-        console.log(res.data.data);
-
         setQuizData(res.data.data);
         setQuestions([...res.data.data.questions]);
         setQuizName(res.data.data.title);
@@ -65,10 +63,7 @@ const EditQuiz = () => {
                             questions={questions}
                             quizName={quizName}
                         />
-                        <PreviewButton
-                            quizName={quizName}
-                            questions={questions}
-                        />
+                        <PreviewButton quizData={quizData} />
                     </>
                 )}
             </div>

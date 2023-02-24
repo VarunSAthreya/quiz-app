@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PreviewModal from './PreviewModal';
-const PreviewButton = (props) => {
+const PreviewButton = ({ quizData }) => {
     const [lgShow, setLgShow] = useState(false);
-    const { quizName, questions } = props;
     return (
         <>
             {lgShow && (
                 <PreviewModal
                     lgShow={lgShow}
                     setLgShow={setLgShow}
-                    quizName={quizName}
-                    questions={questions}
+                    quizData={quizData}
                 />
             )}
             <Button
