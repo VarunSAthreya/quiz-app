@@ -9,11 +9,10 @@ export const getSubmissions = async (
 ) => {
     try {
         const subs = await QuizSubmission.find().sort({ createdAt: -1 });
-        const jsonSubs = subs.map((sub) => sub.toJSON());
 
         res.status(200).json({
             message: 'Fetched all submissions successfully!',
-            data: jsonSubs,
+            data: subs,
         });
     } catch (err: any) {
         next(
@@ -54,7 +53,7 @@ export const getSubmissionById = async (
 
         res.status(200).json({
             message: 'Fetched submission Successfully!',
-            data: sub.toJSON(),
+            data: sub,
         });
     } catch (err: any) {
         next(
@@ -93,11 +92,9 @@ export const getSubmissionByQuizID = async (
             });
         }
 
-        const jsonSubs = subs.map((sub) => sub.toJSON());
-
         res.status(200).json({
             message: 'Fetched all submissions successfully!',
-            data: jsonSubs,
+            data: subs,
         });
     } catch (err: any) {
         next(
@@ -136,11 +133,9 @@ export const getSubmissionByUserID = async (
             });
         }
 
-        const jsonSubs = subs.map((sub) => sub.toJSON());
-
         res.status(200).json({
             message: 'Fetched all submissions successfully!',
-            data: jsonSubs,
+            data: subs,
         });
     } catch (err: any) {
         next(

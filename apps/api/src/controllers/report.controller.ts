@@ -9,11 +9,10 @@ export const getReports = async (
 ) => {
     try {
         const reports = await QuizReport.find().sort({ createdAt: -1 });
-        const jsonReports = reports.map((report) => report.toJSON());
 
         res.status(200).json({
             message: 'Fetched quiz reports Successfully!',
-            data: jsonReports,
+            data: reports,
         });
     } catch (err: any) {
         next(
@@ -54,7 +53,7 @@ export const getReportById = async (
 
         res.status(200).json({
             message: 'Fetched report Successfully!',
-            data: report.toJSON(),
+            data: report,
         });
     } catch (err: any) {
         next(
