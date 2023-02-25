@@ -11,7 +11,7 @@ const TakeQuizPreview = (props) => {
     const [quiz, setQuiz] = useState({});
     const [state, setState] = useState(null);
 
-    const { quizName, questions } = props;
+    const { quizName, questions, quizDescription } = props;
 
     const fetchData = async () => {
         const res = await axios.get(`${VITE_APP_API_URL}/quiz/${id}`);
@@ -19,6 +19,7 @@ const TakeQuizPreview = (props) => {
         const data = {
             quizName: res.data.data.title,
             questions: [...res.data.data.questions],
+            quizDescription: res.data.data.description,
         };
         console.log(data);
         setQuiz(data);
@@ -30,6 +31,7 @@ const TakeQuizPreview = (props) => {
             const data = {
                 quizName: quizName,
                 questions: [...questions],
+                quizDescription: quizDescription,
             };
             console.log(data);
             setQuiz(data);

@@ -9,6 +9,8 @@ import QuizQuestion from './QuizQuestion';
 const QuizContainer = (props) => {
     const [index, setIndex] = useState(0);
     const questions = props.quiz.questions;
+    const quizDescription = props.quiz.quizDescription;
+    console.log(quizDescription);
     const getCurrentQuestion = () => {
         console.log(questions);
         return questions[index];
@@ -57,6 +59,7 @@ const QuizContainer = (props) => {
                     question={getCurrentQuestion()}
                     ind={index}
                     questions={questions}
+                    quizDescription={quizDescription}
                 />
             </div>
             <div className="navigateButtons">

@@ -61,6 +61,7 @@ const CreateQuiz = () => {
                         <PreviewButton
                             quizName={quizName}
                             questions={questions}
+                            quizDescription={quizDescription}
                         />
                     </>
                 )}

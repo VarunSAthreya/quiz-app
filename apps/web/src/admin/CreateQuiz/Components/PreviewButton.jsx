@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import PreviewModal from './PreviewModal';
 const PreviewButton = (props) => {
     const [lgShow, setLgShow] = useState(false);
-    const { quizName, questions } = props;
+    const { quizName, questions, quizDescription } = props;
     return (
         <>
             {lgShow && (
@@ -12,6 +12,7 @@ const PreviewButton = (props) => {
                     setLgShow={setLgShow}
                     quizName={quizName}
                     questions={questions}
+                    quizDescription={quizDescription}
                 />
             )}
             <Button
