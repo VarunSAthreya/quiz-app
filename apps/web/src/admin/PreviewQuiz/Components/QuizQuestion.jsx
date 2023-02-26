@@ -89,21 +89,25 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return questions.map((question, index) => {
-        return (
-            <>
-                <p className="quizDescription">
-                    <b> Quiz Description : </b>
-                    {quizDescription}
-                </p>
-                <hr />
-                <div key={question.id}>
-                    {question.isMultiple
-                        ? renderCheckbox(question, index)
-                        : renderRadio(question, index)}
-                </div>
-            </>
-        );
-    });
+    return (
+        <>
+            <p className="quizDescription">
+                <b> Quiz Description : </b>
+                {quizDescription}
+            </p>
+            <hr />
+            {questions.map((question, index) => {
+                return (
+                    <>
+                        <div key={question.id}>
+                            {question.isMultiple
+                                ? renderCheckbox(question, index)
+                                : renderRadio(question, index)}
+                        </div>
+                    </>
+                );
+            })}
+        </>
+    );
 };
 export default QuizQuestion;
