@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Loading } from 'ui';
 import { VITE_APP_API_URL } from '../../env';
-import Loading from '../../utils/Loading';
 import UserList from './Components/UserDetails';
 import './styles/styleQuizReport.css';
 

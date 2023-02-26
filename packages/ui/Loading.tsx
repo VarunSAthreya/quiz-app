@@ -1,7 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
-const Loading = ({ message }) => {
+type Props = {
+    message: string;
+};
+
+export const Loading: React.FC<Props> = ({ message }) => {
     return (
         <>
             <Spinner animation="grow" />
@@ -9,4 +13,3 @@ const Loading = ({ message }) => {
         </>
     );
 };
-export default Loading;
