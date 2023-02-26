@@ -1,0 +1,52 @@
+components:
+    schemas:
+        CreateQuizRequest:
+            type: object
+            required:
+                - title
+                - description
+                - username
+                - email
+                - questions
+            properties:
+                title:
+                    type: string
+                    example: hcf and lcm
+                description:
+                    type: string
+                    example: HCF and LCM quiz
+                username:
+                    type: string
+                    example: johndoe
+                email:
+                    type: string
+                    example: john@doe.com
+                urlId:
+                    type: string
+                    example: asLeCYQtZasdb_9QKxP7_IpNHB
+                questions:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            title:
+                                type: string
+                                example: 'The G.C.D. of 1.08, 0.36 and 0.9 is:'
+                            points:
+                                type: integer
+                                format: int32
+                                example: 5
+                            isMultiple:
+                                type: boolean
+                                example: false
+                            options:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        title:
+                                            type: string
+                                            example: '0.03'
+                                        isAnswer:
+                                            type: boolean
+                                            example: false

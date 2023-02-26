@@ -242,7 +242,7 @@ export const submitQuiz = async (
             throw new AppError({
                 message:
                     'Error! Cannot retrieve given quiz, or quiz not present.',
-                statusCode: 401,
+                statusCode: 404,
             });
         }
         const { score, correctQuestions } = calculateScore(quiz, submittedQuiz);
