@@ -49,3 +49,14 @@ The following is a list of few libraries and frameworks used to build the projec
 
     -   [Turborepo](https://turbo.build/repo): A build system for JS and TS monorepos.
     -   [Docker](https://www.docker.com/): A containerization platform used for developing, deploying, and managing applications.
+
+## Apps
+
+There are 2 Apps inside this monorepo:
+
+-   `api`
+    -   Server of the Quiz App
+    -   More info [here](./apps/api/README.md).
+-   `web`
+    -   Client of the Quiz App
+    -   More info [here](./apps/web/README.md).
