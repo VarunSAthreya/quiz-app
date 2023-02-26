@@ -2,8 +2,8 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
 const QuizQuestion = (props) => {
-    const { questions, ind } = props;
-    console.log(questions);
+    const { questions, ind, quizDescription } = props;
+
     const checkedOption = (question, option) => {
         if (question.isMultiple) {
             if (option.isSelected) {
@@ -19,15 +19,16 @@ const QuizQuestion = (props) => {
         }
     };
 
-    const renderCheckbox = (question) => {
+    const renderCheckbox = (question, index) => {
         return (
             <div key={question.id} className="QnA">
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
-                <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-checkbox" className="mb-3, options">
@@ -38,7 +39,7 @@ const QuizQuestion = (props) => {
                                         label={option.title}
                                         name={props.question.id}
                                         type="checkbox"
-                                        id="inline-radio-1"
+                                        id={'inline-checkbox-' + option.id}
                                         onChange={(e) => {
                                             checkedOption(question, option);
                                         }}
@@ -53,15 +54,16 @@ const QuizQuestion = (props) => {
         );
     };
 
-    const renderRadio = (question) => {
+    const renderRadio = (question, index) => {
         return (
             <div key={question.id} className="QnA">
+                <p className="que"> Q:{index + 1} </p>
                 <Card border="success" className="questionContainer">
                     <Card.Body>
                         <Card.Title id="question">{question.title}</Card.Title>
                     </Card.Body>
                 </Card>
-                <br />
+                <p className="questionPoints">Points:{question.points}</p>
                 <div className="optionsContainer">
                     <Form>
                         <div key="inline-radio" className="mb-3, options">
@@ -72,7 +74,7 @@ const QuizQuestion = (props) => {
                                         label={option.title}
                                         name={props.question.id}
                                         type="radio"
-                                        id="inline-radio-1"
+                                        id={'inline-radio-' + option.id}
                                         onChange={(e) => {
                                             checkedOption(question, option);
                                         }}
@@ -87,13 +89,20 @@ const QuizQuestion = (props) => {
         );
     };
 
-    return questions.map((question) => {
+    return questions.map((question, index) => {
         return (
-            <div key={question.id}>
-                {question.isMultiple
-                    ? renderCheckbox(question)
-                    : renderRadio(question)}
-            </div>
+            <>
+                <p className="quizDescription">
+                    <b> Quiz Description : </b>
+                    {quizDescription}
+                </p>
+                <hr />
+                <div key={question.id}>
+                    {question.isMultiple
+                        ? renderCheckbox(question, index)
+                        : renderRadio(question, index)}
+                </div>
+            </>
         );
     });
 };

@@ -12,7 +12,6 @@ export const createQuiz = async (
         const { body } = req;
         const { username, email } = body;
 
-        console.log(body);
         // Check if there is user details
         if (!username || !email) {
             throw new AppError({
@@ -37,7 +36,7 @@ export const createQuiz = async (
 
         res.status(201).json({
             message: 'Quiz Created Successfully!',
-            data: savedQuiz.toJSON(),
+            data: savedQuiz,
         });
     } catch (err: any) {
         next(
@@ -102,7 +101,7 @@ export const getAllQuiz = async (
     }
 };
 
-export const getQUiz = async (
+export const getQuiz = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -121,7 +120,6 @@ export const getQUiz = async (
         }
 
         const quiz = await Quiz.findById(id);
-        console.log(quiz);
 
         if (!quiz) {
             throw new AppError({
@@ -139,7 +137,7 @@ export const getQUiz = async (
 
         res.status(200).json({
             message: 'Fetched quiz Successfully!',
-            data: quiz.toJSON(),
+            data: quiz,
         });
     } catch (err: any) {
         next(
@@ -247,7 +245,6 @@ export const submitQuiz = async (
                 statusCode: 401,
             });
         }
-
         const { score, correctQuestions } = calculateScore(quiz, submittedQuiz);
 
         const quizSubmission = new QuizSubmission({
@@ -258,6 +255,7 @@ export const submitQuiz = async (
             score: score,
             correctQuestions,
             totalScore: quiz.totalPoints,
+            totalQuestions: quiz.questions.length,
         });
         await quizSubmission.save();
 

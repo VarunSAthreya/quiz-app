@@ -14,6 +14,7 @@ const EditQuiz = () => {
     const [quizName, setQuizName] = useState('');
     const [quesDeleteState, setQuesDeleteState] = useState(0);
     const [questions, setQuestions] = useState([]);
+    const [quizDescription, setQuizDescription] = useState('');
 
     const { id } = useParams();
 
@@ -27,6 +28,7 @@ const EditQuiz = () => {
         setQuizData(res.data.data);
         setQuestions([...res.data.data.questions]);
         setQuizName(res.data.data.title);
+        setQuizDescription(res.data.data.description);
     };
     useEffect(() => {
         fetchQuestions();
@@ -68,6 +70,7 @@ const EditQuiz = () => {
                         <PreviewButton
                             quizName={quizName}
                             questions={questions}
+                            quizDescription={quizDescription}
                         />
                     </>
                 )}

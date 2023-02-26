@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 
@@ -64,7 +65,7 @@ const OptionContainer = (props) => {
                 </Form.Group>
                 <Form.Check
                     type="switch"
-                    id="custom-switch"
+                    id={'custom-switch' + nanoid()}
                     label={`Is option-${i + 1} correct ?`}
                     onChange={(event) =>
                         changeHandlerSwitch(event.target.checked)
