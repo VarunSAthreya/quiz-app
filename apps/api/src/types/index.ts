@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import { z } from 'zod';
 import {
     OptionTypeSchema,
-    OptionTypeSchemaWithID,
     QuestionTypeSchema,
     QuizTypeSchema,
     UserOptionTypeSchema,
@@ -24,10 +23,7 @@ export const SubmitQuizInputSchema = z
     })
     .merge(UserTypeSchema);
 
-export const EditQuizInputSchema = UserQuizTypeSchema({
-    optionType: OptionTypeSchemaWithID,
-    questionType: UserQuestionTypeSchema,
-});
+export const EditQuizInputSchema = QuizTypeSchema;
 
 export interface UserType
     extends mongoose.Document,
