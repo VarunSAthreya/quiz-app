@@ -25,7 +25,7 @@ components:
                                 properties:
                                     title:
                                         type: string
-                                        example: "The G.C.D. of 1.08, 0.36 and 0.9 is:"
+                                        example: 'The G.C.D. of 1.08, 0.36 and 0.9 is:'
                                     options:
                                         type: array
                                         items:
@@ -33,7 +33,7 @@ components:
                                             properties:
                                                 title:
                                                     type: string
-                                                    example: "0.03"
+                                                    example: '0.03'
                                                 id:
                                                     type: string
                                                     example: 63fa75c7f5205e9be16427a5
