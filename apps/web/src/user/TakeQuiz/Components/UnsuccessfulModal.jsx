@@ -12,7 +12,6 @@ const UnSuccessfulModal = (props) => {
 
     const handleShow = () => setShow(true);
     useEffect(handleShow, []);
-
     return (
         <>
             <Modal show={show} onHide={handleClose}>
@@ -23,7 +22,16 @@ const UnSuccessfulModal = (props) => {
                     Quiz submission unsuccessful ! <br />
                     <br />
                     <br />
-                    {message}
+                    {message.map((err) => {
+                        if (err != undefined) {
+                            return (
+                                <div key={err}>
+                                    {err}
+                                    <br />
+                                </div>
+                            );
+                        }
+                    })}
                 </Modal.Body>
 
                 <Modal.Footer>

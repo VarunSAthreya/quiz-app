@@ -36,7 +36,6 @@ const ConfirmModal = (props) => {
             .post(`${VITE_APP_API_URL}/quiz/submit`, payload)
             .then((data) => {
                 console.log('Submission Successful');
-                console.log(data.data.data.id);
                 setStatus(true);
                 navigate(`/submit/${data.data.data.id}`);
             })
@@ -44,7 +43,10 @@ const ConfirmModal = (props) => {
                 console.log('Submission Unsuccessful', err);
                 setLgShow(false);
                 setStatus(false);
-                setErrorMessage(err.response.data.message);
+                setErrorMessage([
+                    err.response.data.message.username,
+                    err.response.data.message.email,
+                ]);
             });
     };
 

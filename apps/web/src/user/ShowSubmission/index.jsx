@@ -32,7 +32,7 @@ const ShowSubmission = () => {
     }, [id]);
 
     if (loading) return <Loading message={'Loading...'} />;
-    console.log('submission :', submission);
+    // console.log('submission :', submission);
     let num = (submission.score / submission.totalScore) * 100;
     num = Math.round(num * 100) / 100;
     return (
