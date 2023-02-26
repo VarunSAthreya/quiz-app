@@ -35,7 +35,13 @@ export const QuestionTypeSchema = z.object({
         required_error: 'Question -> isMultiple is required.',
         invalid_type_error: 'Question -> isMultiple must be a boolean.',
     }),
-    points: z.number().nonnegative(),
+    // points: z
+    //     .number({
+    //         required_error: 'Points are required for a Question.',
+    //         invalid_type_error: 'Points must be a number.',
+    //     })
+    //     .nonnegative('Points must be a positive number'),
+    points: z.any(),
     options: z.array(OptionTypeSchema),
 });
 

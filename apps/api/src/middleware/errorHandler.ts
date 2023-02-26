@@ -8,7 +8,7 @@ const errorHandler = (
     next: NextFunction
 ) => {
     return res.status(err.statusCode).json({
-        message: err.message,
+        message: JSON.stringify(err.message),
     });
 };
 
