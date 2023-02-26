@@ -24,6 +24,10 @@ const router = express.Router();
  *              $ref: '#/components/schemas/GetAllSubmissionsResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/').get(getSubmissions);
 
@@ -49,6 +53,10 @@ router.route('/').get(getSubmissions);
  *              $ref: '#/components/schemas/GetSubmissionByIDResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/:id').get(getSubmissionById);
 
@@ -74,6 +82,10 @@ router.route('/:id').get(getSubmissionById);
  *              $ref: '#/components/schemas/GetSubmissionsByQuizIDResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/quiz/:id').get(getSubmissionByQuizID);
 
@@ -99,6 +111,10 @@ router.route('/quiz/:id').get(getSubmissionByQuizID);
  *              $ref: '#/components/schemas/GetSubmissionsByUserIDResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/user/:id').get(getSubmissionByUserID);
 

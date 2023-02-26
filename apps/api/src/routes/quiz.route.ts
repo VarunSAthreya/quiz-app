@@ -34,6 +34,10 @@ const router = express.Router();
  *              $ref: '#/components/schemas/GetAllQuizResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/').get(getAllQuiz);
 
@@ -59,6 +63,10 @@ router.route('/').get(getAllQuiz);
  *              $ref: '#/components/schemas/CreateQuizResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/').post(validate(CreateQuizInputSchema), createQuiz);
 
@@ -78,6 +86,10 @@ router.route('/').post(validate(CreateQuizInputSchema), createQuiz);
  *              $ref: '#/components/schemas/GetAllReportsResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/report').get(getReports);
 
@@ -103,6 +115,10 @@ router.route('/report').get(getReports);
  *              $ref: '#/components/schemas/GetReportByQuizIDResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/report/:id').get(getReportByQuizId);
 
@@ -128,6 +144,10 @@ router.route('/report/:id').get(getReportByQuizId);
  *              $ref: '#/components/schemas/GetQuizByIDResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 // * NOTE: This should be at last as it catches other routes also.
 router.route('/:id').get(getQuiz);
@@ -160,6 +180,10 @@ router.route('/:id').get(getQuiz);
  *              $ref: '#/components/schemas/UpdateQuizResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/:id').put(validate(EditQuizInputSchema), updateQuiz);
 
@@ -184,9 +208,17 @@ router.route('/:id').put(validate(EditQuizInputSchema), updateQuiz);
  *            schema:
  *              $ref: '#/components/schemas/SubmitQuizResponse'
  *      404:
- *        description: Quiz Not found
+ *        description: Not Found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/BadRequestResponse'
  */
 router.route('/submit').post(validate(SubmitQuizInputSchema), submitQuiz);
 
