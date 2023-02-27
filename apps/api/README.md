@@ -17,7 +17,7 @@ Note: Question and Option are present inside Quiz.
 
 #### NOTE:
 
-For getting started with the project please look into **[`CONTRIBUTING.md`](./CONTRIBUTING.md)**.
+For getting started with the project please look into **[`CONTRIBUTING.md`](../../CONTRIBUTING.md)**.
 
 ## API routes
 

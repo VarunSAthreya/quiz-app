@@ -193,7 +193,7 @@ router.route('/:id').put(validate(EditQuizInputSchema), updateQuiz);
  *  post:
  *     tags:
  *     - Quiz
- *     summary: Submit QUiz
+ *     summary: Submit Quiz
  *     requestBody:
  *      required: true
  *      content:
