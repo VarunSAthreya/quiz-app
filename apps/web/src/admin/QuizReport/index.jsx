@@ -13,6 +13,7 @@ const QuizReport = () => {
     const [submissions, setSubmissions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [title, setTitle] = useState('');
 
     useEffect(() => {
         setLoading(true);
@@ -33,11 +34,36 @@ const QuizReport = () => {
             .finally(() => setLoading(false));
     }, [id]);
 
+    const fetchName = async () => {
+        const res = await axios.get(`${VITE_APP_API_URL}/quiz/${id}`);
+        setTitle(res.data.data.title);
+    };
+    useEffect(() => {
+        fetchName();
+    }, []);
+
     if (error) {
         return (
             <div>
-                <h2>Error</h2>
-                <p>{error}</p>
+                <div className="report-listing-quiz">
+                    <div className="report-listing-heading">
+                        <h1>{title}</h1>
+                    </div>
+                    <div className="report-quiz-detailes">
+                        <p>No. Of times Quiz Taken: 0</p>
+                    </div>
+
+                    <div
+                        className="report-quizzes"
+                        style={{
+                            textAlign: 'center',
+                            color: 'red',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        No User Responses Present !
+                    </div>
+                </div>
             </div>
         );
     }
