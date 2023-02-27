@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { MONGO_URL, PORT } from './env';
 
 import server from './server';
+import swaggerDocs from './utils/swagger';
 
 (async function () {
     try {
@@ -10,6 +11,7 @@ import server from './server';
 
         server.listen(PORT, () => {
             console.log(`Server listening on http://localhost:${PORT}/`);
+            swaggerDocs(server, PORT);
         });
     } catch (err: any) {
         console.log('Error starting the server!', err.message);

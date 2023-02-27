@@ -20,6 +20,8 @@ services:
             - 3000:3000
         networks:
             - app_network
+        environment:
+            - VITE_APP_API_URL=http://localhost:8000
     api:
         container_name: api
         build:

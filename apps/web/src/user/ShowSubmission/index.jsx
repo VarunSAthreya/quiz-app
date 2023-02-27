@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useParams } from 'react-router';
+import { Loading } from 'ui';
 import { VITE_APP_API_URL } from '../../env';
-import Loading from '../../utils/Loading';
 import './style/style.css';
 
 import { FaRegCheckCircle } from 'react-icons/fa';
