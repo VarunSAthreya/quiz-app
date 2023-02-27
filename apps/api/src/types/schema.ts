@@ -42,7 +42,9 @@ export const QuestionTypeSchema = z.object({
     //     })
     //     .nonnegative('Points must be a positive number'),
     points: z.any(),
-    options: z.array(OptionTypeSchema),
+    options: z
+        .array(OptionTypeSchema)
+        .min(2, 'Minimum 2 option required for a question.'),
 });
 
 export const QuizTypeSchema = z.object({
@@ -59,7 +61,9 @@ export const QuizTypeSchema = z.object({
     adminID: z.string({
         required_error: 'AdminID is required for Question.',
     }),
-    questions: z.array(QuestionTypeSchema),
+    questions: z
+        .array(QuestionTypeSchema)
+        .min(1, 'Minimum 1 question required for a quiz.'),
     totalPoints: z.optional(
         z.number().nonnegative('Total Points must be a positive number.')
     ),

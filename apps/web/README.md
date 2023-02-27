@@ -4,7 +4,7 @@ This folder contains code for the frontend for the Quiz App.
 
 #### NOTE:
 
-For getting started with the project please look into **[`CONTRIBUTING.md`](./CONTRIBUTING.md)**.
+For getting started with the project please look into **[`CONTRIBUTING.md`](../../CONTRIBUTING.md)**.
 
 ## Routes
 
