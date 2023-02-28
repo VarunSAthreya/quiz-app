@@ -43,10 +43,7 @@ const ConfirmModal = (props) => {
                 console.log('Submission Unsuccessful', err);
                 setLgShow(false);
                 setStatus(false);
-                setErrorMessage([
-                    err.response.data.message.username,
-                    err.response.data.message.email,
-                ]);
+                setErrorMessage(err.response.data.message);
             });
     };
 

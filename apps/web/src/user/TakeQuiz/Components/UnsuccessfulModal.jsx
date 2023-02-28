@@ -22,16 +22,7 @@ const UnSuccessfulModal = (props) => {
                     Quiz submission unsuccessful ! <br />
                     <br />
                     <br />
-                    {message.map((err) => {
-                        if (err != undefined) {
-                            return (
-                                <div key={err}>
-                                    {err}
-                                    <br />
-                                </div>
-                            );
-                        }
-                    })}
+                    {message}
                 </Modal.Body>
 
                 <Modal.Footer>
