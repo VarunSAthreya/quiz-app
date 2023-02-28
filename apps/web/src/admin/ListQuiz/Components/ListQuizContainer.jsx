@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Loading } from 'ui';
 import { VITE_APP_API_URL } from '../../../env';
 import QuizCardComponent from './QuizCard';
 
@@ -25,7 +26,7 @@ const ListQuizContainer = () => {
         getData();
     }, []);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading message="Loading..." />;
 
     return (
         <div className="listing-quiz">
