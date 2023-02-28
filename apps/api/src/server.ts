@@ -20,8 +20,8 @@ app.get('/', (_, res) => {
     });
 });
 
-app.use('/quiz', quizRoute);
-app.use('/submit', submissionRoute);
+app.use('/api/quiz', quizRoute);
+app.use('/api/submit', submissionRoute);
 
 app.use(errorHandler);
 
