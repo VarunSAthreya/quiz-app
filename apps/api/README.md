@@ -1,4 +1,4 @@
-# API
+# [API](https://quiz-app-team-1.up.railway.app/)
 
 This folder contains code for the APIs for the Quiz App.
 
